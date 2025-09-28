@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags |  join: ', '  }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; page "{{ current_page }}"{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+    {% if page_description %}
+      <meta name="description" content="{{ page_description }}">
+    {% endif %}
+
+    {%  render 'meta-tags' %}
+
+    <!-- font -->
+    <link rel="stylesheet" href="{{'fonts.css' |  asset_url}}">
+    <!-- Icons -->
+    <link rel="stylesheet" href="{{'font-icons.css' |  asset_url}}">
+    <link rel="stylesheet" href="{{'bootstrap.min.css' |  asset_url}}">
+    <link rel="stylesheet" href="{{'swiper-bundle.min.css' |  asset_url}}">
+    <link rel="stylesheet" href="{{'animate.css' | asset_url}}">
+    {{ 'styles.css' |  asset_url |  stylesheet_tag }}
+
+     <!-- Javascript -->
+    <script src="{{'bootstrap.min.js' |  asset_url}}" defer></script>
+    <script src="{{'jquery.min.js' |  asset_url }}" defer></script>
+    <script src="{{'swiper-bundle.min.js' |  asset_url}}" defer></script>
+    <script src="{{'carousel.js' |  asset_url}}" defer></script>
+    <script src="{{'bootstrap-select.min.js' |  asset_url}}" defer></script>
+    <script src="{{'lazysize.min.js' |  asset_url}}" defer></script>
+    <script src="{{'bootstrap-select.min.js' |  asset_url}}" defer></script>
+    <script src="{{'count-down.js' |  asset_url}}" defer></script>
+    <script src="{{'wow.min.js' |  asset_url}}" defer></script>
+    <script src="{{'multiple-modal.js' |  asset_url}}" defer></script>
+    <script src="{{'main.js' |  asset_url}}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+  <body class="preload-wrapper">
+    <div class="preload preload-container">
+        <div class="preload-logo">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    
+    <div id="wrapper">
+      {%  section 'announcement-bar' %}
+      <main>
+        {{ content_for_layout }}
+      </main>
+    </div>
+  </body>
+</html>

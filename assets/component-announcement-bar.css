@@ -1,0 +1,127 @@
+.announcement-bar {
+  padding-right: 65px;
+  position: relative;
+  transition: all 0.3s linear;
+}
+.announcement-bar .close-announcement-bar {
+  cursor: pointer;
+  position: absolute;
+  font-size: 12px;
+  right: 25px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--white);
+}
+.announcement-bar.not-hover .box-sw-announcement-bar:hover {
+  animation-play-state: running !important;
+}
+
+.box-sw-announcement-bar {
+  display: flex;
+  -webkit-animation: slide-har 14s linear infinite;
+  animation: slide-har 14s linear infinite;
+  transition: animation-duration 300ms;
+}
+.box-sw-announcement-bar:hover {
+  animation-play-state: paused;
+}
+
+.speed-1 {
+  -webkit-animation: slide-har 40s linear infinite;
+  animation: slide-har 40s linear infinite !important;
+}
+.speed-1:hover {
+  animation-play-state: paused !important;
+}
+
+.run-reverse {
+  animation-direction: reverse !important;
+}
+
+.wrap-announcement-bar {
+  overflow: hidden;
+}
+
+.noti-bar-text {
+  padding: 10px 0px;
+}
+
+.wrap-announcement-bar-2 {
+  position: relative;
+}
+.wrap-announcement-bar-2 .tf-sw-top_bar {
+  margin: 0px 20px;
+}
+.wrap-announcement-bar-2 .navigation-topbar {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrap-announcement-bar-2 .navigation-topbar .icon {
+  color: var(--white);
+  font-size: 12px;
+}
+.wrap-announcement-bar-2 .navigation-topbar.nav-next-topbar {
+  left: 0;
+}
+.wrap-announcement-bar-2 .navigation-topbar.nav-prev-topbar {
+  right: 0;
+}
+
+@keyframes slide-har {
+  0% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+  100% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+.announcement-bar-item {
+  display: inline-block;
+  padding-right: 46px;
+  position: relative;
+}
+.announcement-bar-item p {
+  font-size: 12px;
+  padding: 10px 0px;
+  font-weight: 600;
+  color: var(--white);
+  white-space: nowrap;
+  padding-left: 23px;
+}
+.announcement-bar-item:not(:last-child)::after {
+  height: 1px;
+  width: 22px;
+  background-color: var(--white);
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.announcement-bar-black .announcement-bar-item p {
+  color: var(--main);
+}
+.announcement-bar-black .announcement-bar-item::after {
+  background-color: var(--main);
+}
+.announcement-bar-black .close-announcement-bar {
+  color: var(--main);
+}

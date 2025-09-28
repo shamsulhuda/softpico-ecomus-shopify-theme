@@ -1,0 +1,81 @@
+<!-- announcement-bar -->
+{{ 'component-announcement-bar.css' |  asset_url |  stylesheet_tag }}
+<div class="announcement-bar bg_dark">
+    <div class="wrap-announcement-bar">
+        <div class="box-sw-announcement-bar speed-{{- section.settings.speed -}}">
+          {%  for block  in section.blocks %} 
+            {% if block.settings.text != blank %}
+            <div class="announcement-bar-item">
+                <p>{{ block.settings.text }}</p>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+    <span class="icon-close close-announcement-bar"></span>
+
+</div>
+<!-- /announcement-bar -->
+
+{%  schema  %} 
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "sec",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "FREE SHIPPING AND RETURNS"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
