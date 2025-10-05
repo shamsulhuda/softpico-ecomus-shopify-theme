@@ -20,6 +20,20 @@
     {%  render 'meta-tags' %}
 
     <!-- font -->
+     {% style %}
+     @font-face {
+      font-family: 'icomoon';
+      src:  url({{ 'icomoon.eot' | asset_url }});
+      src:  url({{'icomoon.eot' |  asset_url |  append: '?45zxck#iefix'}}) format('embedded-opentype'),
+        url({{'icomoon.ttf' | asset_url }}) format('truetype'),
+        url({{'icomoon.woff' |  asset_url }}) format('woff'),
+        url({{'icomoon.svg' | asset_url}}) format('svg');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+      font-display: swap;    
+    }
+    {% endstyle %}
     <link rel="stylesheet" href="{{'fonts.css' |  asset_url}}">
     <!-- Icons -->
     <link rel="stylesheet" href="{{'font-icons.css' |  asset_url}}">
@@ -49,7 +63,7 @@
             <div class="spinner"></div>
         </div>
     </div>
-    
+
     <div id="wrapper">
       {%  section 'announcement-bar' %}
       <main>

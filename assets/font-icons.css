@@ -1,15 +1,4 @@
-@font-face {
-  font-family: 'icomoon';
-  src:  url('icomoon.eot?45zxck');
-  src:  url('icomoon.eot?45zxck#iefix') format('embedded-opentype'),
-    url('icomoon.ttf?45zxck') format('truetype'),
-    url('icomoon.woff?45zxck') format('woff'),
-    url('icomoon.svg?45zxck#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-  font-display: swap;    
-}
+
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
