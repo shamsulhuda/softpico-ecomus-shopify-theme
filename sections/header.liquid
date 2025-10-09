@@ -1,192 +1,211 @@
-<h3>Header</h3>
+<!-- sections/header.liquid -->
+<header id="header" class="header-default header-style-2">
+    <div class="main-header line">
+        <div class="container-full px_15 lg-px_40">
+            <div class="row wrapper-header align-items-center">
+              {% if section.settings.menu != blank %}
+                <div class="col-xl-5 tf-md-hidden">
+                    <ul class="header-list-categories">
+                      {% for link in section.settings.menu.links %}
+                        <li class="categories-item">
+                          <a href="{{ link.url }}" class="text-uppercase">{{ link.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                </div>
+              {% endif %}
+                <div class="col-md-4 col-3 tf-lg-hidden">
+                    <a href="#mobileMenu" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16"
+                            fill="none">
+                            <path
+                                d="M2.00056 2.28571H16.8577C17.1608 2.28571 17.4515 2.16531 17.6658 1.95098C17.8802 1.73665 18.0006 1.44596 18.0006 1.14286C18.0006 0.839753 17.8802 0.549063 17.6658 0.334735C17.4515 0.120408 17.1608 0 16.8577 0H2.00056C1.69745 0 1.40676 0.120408 1.19244 0.334735C0.978109 0.549063 0.857702 0.839753 0.857702 1.14286C0.857702 1.44596 0.978109 1.73665 1.19244 1.95098C1.40676 2.16531 1.69745 2.28571 2.00056 2.28571ZM0.857702 8C0.857702 7.6969 0.978109 7.40621 1.19244 7.19188C1.40676 6.97755 1.69745 6.85714 2.00056 6.85714H22.572C22.8751 6.85714 23.1658 6.97755 23.3801 7.19188C23.5944 7.40621 23.7148 7.6969 23.7148 8C23.7148 8.30311 23.5944 8.59379 23.3801 8.80812C23.1658 9.02245 22.8751 9.14286 22.572 9.14286H2.00056C1.69745 9.14286 1.40676 9.02245 1.19244 8.80812C0.978109 8.59379 0.857702 8.30311 0.857702 8ZM0.857702 14.8571C0.857702 14.554 0.978109 14.2633 1.19244 14.049C1.40676 13.8347 1.69745 13.7143 2.00056 13.7143H12.2863C12.5894 13.7143 12.8801 13.8347 13.0944 14.049C13.3087 14.2633 13.4291 14.554 13.4291 14.8571C13.4291 15.1602 13.3087 15.4509 13.0944 15.6653C12.8801 15.8796 12.5894 16 12.2863 16H2.00056C1.69745 16 1.40676 15.8796 1.19244 15.6653C0.978109 15.4509 0.857702 15.1602 0.857702 14.8571Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </div>
+                {% if section.settings.show_logo %}
+                <div class="col-xl-2 col-md-4 col-6 text-center">
+                    <a href="{{ shop.url }}" class="logo-header">
+                      {% if settings.logo %}
+                        {{ settings.logo |  image_url: width: settings.logo_width |  image_tag  }}
+                      {%  else %}
+                        {{ shop.name }}
+                      {% endif %}
+                    </a>
+                </div>
+                {% endif %}
+
+                <div class="col-xl-5 col-md-4 col-3">
+                    <ul class="nav-icon d-flex justify-content-end align-items-center gap-20">
+                        <li class="nav-search"><a href="#canvasSearch" data-bs-toggle="offcanvas"
+                                aria-controls="offcanvasLeft" class="nav-icon-item"><i
+                                    class="icon icon-search"></i></a></li>
+                        <li class="nav-account"><a href="#login" data-bs-toggle="modal" class="nav-icon-item"><i
+                                    class="icon icon-account"></i></a></li>
+                        <li class="nav-wishlist"><a href="wishlist.html" class="nav-icon-item"><i
+                                    class="icon icon-heart"></i><span class="count-box">0</span></a></li>
+                        <li class="nav-cart"><a href="#shoppingCart" data-bs-toggle="modal"
+                                class="nav-icon-item"><i class="icon icon-bag"></i><span
+                                    class="count-box">0</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% assign block = section.blocks.first %}
+    {% assign links = block.settings.submenu.links %}
+    {% if block.type == 'submenu' %}
+    <div class="header-bottom line">
+        <div class="container-full px_15 lg-px_40">
+            <div class="wrapper-header d-flex justify-content-center align-items-center">
+                <nav class="box-navigation text-center">
+                    <ul class="box-nav-ul d-flex align-items-center justify-content-center gap-30">
+                        {% for link in links %}
+                            <li class="menu-item{% unless block.settings.enable_megamenu %} position-relative{% endunless %}">
+                                {% if link.links.size > 0 %}
+                                <a href="{{ link.title }}" class="item-link">{{ link.title }}<i class="icon icon-arrow-down"></i></a>
+                                    {% if block.settings.enable_megamenu %}
+                                    <div class="sub-menu mega-menu">
+                                        <div class="container">
+                                            <div class="row">
+                                                {% for child in link.links %}
+                                                <div class="col-lg-2">
+                                                    <div class="mega-menu-item">
+                                                        <div class="menu-heading">
+                                                            {{ child.title }}
+                                                        </div>
+                                                        {% if child.links.size > 0 %}
+                                                        <ul class="menu-list">
+                                                            {% for grandchild in child.links %}
+                                                            <li><a href="{{ grandchild.url }}"
+                                                                    class="menu-link-text link">{{ grandchild.title }}</a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                                <div class="col-lg-3">
+                                                    <div class="collection-item hover-img">
+                                                        <div class="collection-inner">
+                                                            <a href="shop-men.html" class="collection-image img-style">
+                                                                <img class="lazyload"
+                                                                    data-src="images/collections/collection-1.jpg"
+                                                                    src="images/collections/collection-1.jpg"
+                                                                    alt="collection-demo-1">
+                                                            </a>
+                                                            <div class="collection-content">
+                                                                <a href="shop-men.html"
+                                                                    class="tf-btn hover-icon btn-xl collection-title fs-16"><span>Men</span><i
+                                                                        class="icon icon-arrow1-top-left"></i></a>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="collection-item hover-img">
+                                                        <div class="collection-inner">
+                                                            <a href="shop-women.html"
+                                                                class="collection-image img-style">
+                                                                <img class="lazyload"
+                                                                    data-src="images/collections/collection-2.jpg"
+                                                                    src="images/collections/collection-2.jpg"
+                                                                    alt="collection-demo-1">
+                                                            </a>
+                                                            <div class="collection-content">
+                                                                <a href="shop-women.html"
+                                                                    class="tf-btn btn-xl collection-title fs-16 hover-icon"><span>Women</span><i
+                                                                        class="icon icon-arrow1-top-left"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                        <div class="sub-menu submenu-default">
+                                        <ul class="menu-list">
+                                            {% for child in link.links %}
+                                            <li {% if child.links.size > 0 %}class="menu-item-2"{% endif %}>
+                                                <a href="{{ child.url }}" class="menu-link-text link text_black-2">{{ child.title }}</a>
+                                                {% if child.links.size > 0 %}
+                                                <div class="sub-menu submenu-default">
+                                                    <ul class="menu-list">
+                                                        {% for grandchild in child.links %}
+                                                            <li><a href="{{ grandchild.url }}"
+                                                                class="menu-link-text link text_black-2">{{ grandchild.title }}</a>
+                                                            </li>
+                                                        {% endfor %}                                                        
+                                                    </ul>
+                                                </div>
+                                                {% endif %}
+                                            </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                {% else %}
+                                <a href="{{ link.url }}" class="item-link">{{ link.title }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <ul class="header-list-categories tf-lg-hidden">
+                    {% for link in section.settings.menu.links %}
+                        <li class="categories-item">
+                          <a href="{{ link.url }}" class="text-uppercase">{{ link.title }}</a>
+                        </li>
+                      {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</header>
+<!-- /header -->
 
 {% schema %}
-{
-  "name": "t:sections.header.name",
-  "class": "section-header",
-  "max_blocks": 3,
-  "settings": [
-    {
-      "type": "select",
-      "id": "logo_position",
-      "options": [
-        {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
-        },
-        {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        },
-        {
-          "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__4.label"
-        }
-      ],
-      "default": "middle-left",
-      "label": "t:sections.header.settings.logo_position.label",
-      "info": "t:sections.header.settings.logo_help.content"
-    },
-    {
-      "type": "select",
-      "id": "mobile_logo_position",
-      "options": [
-        {
-          "value": "center",
-          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
-        },
-        {
-          "value": "left",
-          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
-        }
-      ],
-      "default": "center",
-      "label": "t:sections.header.settings.mobile_logo_position.label"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
-    },
-    {
-      "type": "select",
-      "id": "menu_type_desktop",
-      "options": [
-        {
-          "value": "dropdown",
-          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
-        },
-        {
-          "value": "mega",
-          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
-        },
-        {
-          "value": "drawer",
-          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
-        }
-      ],
-      "default": "dropdown",
-      "label": "t:sections.header.settings.menu_type_desktop.label"
-    },
-    {
-      "type": "select",
-      "id": "sticky_header_type",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
-        },
-        {
-          "value": "on-scroll-up",
-          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
-        },
-        {
-          "value": "always",
-          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
-        },
-        {
-          "value": "reduce-logo-size",
-          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
-        }
-      ],
-      "default": "on-scroll-up",
-      "label": "t:sections.header.settings.sticky_header_type.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_line_separator",
-      "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__1.content"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "color_scheme",
-      "id": "menu_color_scheme",
-      "label": "t:sections.header.settings.menu_color_scheme.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__utilities.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_country_selector.label",
-      "info": "t:sections.header.settings.enable_country_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_language_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_language_selector.label",
-      "info": "t:sections.header.settings.enable_language_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_customer_avatar",
-      "default": true,
-      "label": "t:sections.header.settings.enable_customer_avatar.label",
-      "info": "t:sections.header.settings.enable_customer_avatar.info"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.spacing"
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.header.settings.margin_bottom.label",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 20
-    }
-  ],
-  "blocks": [
-    {
-      "type": "@app"
-    }
-  ]
-}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_logo",
+        "label": "Show Logo",
+        "default": true,
+        "info": "Add your logo from theme settings"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Main menu",
+        "default": "main-menu"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "submenu",
+        "name": "Submenu",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "submenu",
+            "label": "Select menu"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_megamenu",
+            "label": "Enable megamenu",
+            "default": true
+          }
+        ]
+      }
+    ]
+  }
 {% endschema %}

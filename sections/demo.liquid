@@ -1,0 +1,177 @@
+<div class="demo-wrapper">
+    <p>Checkbox = {{ section.settings.checkbox_id }}</p>
+    <p>Number = {{ section.settings.number_id }}</p>
+    <p>Radio = {{ section.settings.logo_aligment }}</p>
+    <p>Select = {{ section.settings.vertical_alignment }}</p>
+    <p>Range = {{ section.settings.font_size |  append: 'px' }}</p>
+    <p>Text = {{ section.settings.footer_linklist_title }}</p>
+    <p>Textarea = {{ section.settings.home_welcome_message }}</p>
+    Richtext = {{ section.settings.home_welcome_rich }}
+    <p>Inline richtext = {{ section.settings.home_welcome_inline }}</p>
+
+    {% for block in section.blocks %}
+        Collection: 
+        <div class="block">
+            {{ block.settings.collection.title }}
+        </div>
+        <div>
+            Product: {{ block.settings.product.title }}
+        </div>
+        <div>
+            Product list:
+            {% for product in block.settings.product_list %}
+                <p>{{ product.title }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            Color:
+            {{ block.settings.color }}    
+        </div>
+        <div>
+            Url: {{ block.settings.url }}
+        </div>
+        <div>
+            Links: 
+            {% for link in block.settings.menu.links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+{% schema %}
+    {
+        "name": "Demo",
+        "class": "demo-settings",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "checkbox_id",
+                "label": "Enable demo section",
+                "default": true
+            },
+            {
+                "type": "number",
+                "id": "number_id",
+                "label": "Put the number",
+                "default": 20
+            },
+            {
+                "type": "radio",
+                "id": "logo_aligment",
+                "label": "Logo alignment",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"
+                    },
+                    {
+                        "value": "centered",
+                        "label": "Centered"
+                    }
+                ],
+                "default": "left"
+            },
+            {
+                "type": "select",
+                "id": "vertical_alignment",
+                "label": "Vertical alignment",
+                "options": [
+                    {
+                    "value": "top",
+                    "label": "Top"
+                    },
+                    {
+                    "value": "middle",
+                    "label": "Middle"
+                    },
+                    {
+                    "value": "bottom",
+                    "label": "Bottom"
+                    }
+                ],
+                "default": "middle"
+            },
+            {
+                "type": "range",
+                "id": "font_size",
+                "min": 12,
+                "max": 24,
+                "step": 1,
+                "unit": "px",
+                "label": "Font size",
+                "default": 16
+            },
+            {
+                "type": "text",
+                "id": "footer_linklist_title",
+                "label": "Heading",
+                "default": "Quick links"
+            },
+            {
+            
+                "type": "textarea",
+                "id": "home_welcome_message",
+                "label": "Welcome message",
+                "default": "Welcome to my shop!"
+            },
+            {
+            
+                "type": "richtext",
+                "id": "home_welcome_rich",
+                "label": "Welcome message",
+                "default": "<p>Welcome to my shop!</p>"
+            },
+            {
+            
+                "type": "inline_richtext",
+                "id": "home_welcome_inline",
+                "label": "Welcome message for inline",
+                "default": "Welcome to my shop!"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "block",
+                "name": "Demo block",
+                "settings": [
+                    {
+                        "type": "collection",
+                        "id": "collection",
+                        "label": "Collection"
+                    },
+                    {
+                        "type": "product",
+                        "id": "product",
+                        "label": "Select product"
+                    },
+                    {
+                        "type": "product_list",
+                        "id": "product_list",
+                        "label": "Select products"
+                    },
+                    {
+                        "type": "color",
+                        "id": "color",
+                        "label": "Select color",
+                        "default": "#000000"
+                    },
+                    {
+                        "type": "url",
+                        "id": "url",
+                        "label": "Select link"
+                    },
+                    {
+                        "type": "link_list",
+                        "id": "menu",
+                        "label": "Select menu"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Demo section"
+            }
+        ]
+    }
+{% endschema %}
