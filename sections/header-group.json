@@ -1,0 +1,80 @@
+{
+    "name": "Header group",
+    "type": "header",
+    "sections": {
+        "announcement-bar": {
+            "type": "announcement-bar",
+            "blocks": {
+                "announcement-bar-0": {
+                    "type": "announcement",
+                    "settings": {
+                        "text": "FREE SHIPPING AND RETURNS"
+                    }
+                },
+                "announcement-bar-1": {
+                    "type": "announcement",
+                    "settings": {
+                        "text": "NEW SEASON, NEW STYLES: FASHION SALE YOU CAN'T MISS"
+                    }
+                },
+                "announcement-bar-2": {
+                    "type": "announcement",
+                    "settings": {
+                        "text": "LIMITED TIME OFFER: FASHION SALE YOU CAN'T RESIST"
+                    }
+                },
+                "announcement-bar-3": {
+                    "type": "announcement",
+                    "settings": {
+                        "text": "FREE SHIPPING AND RETURNS"
+                    }
+                },
+                "announcement-bar-4": {
+                    "type": "announcement",
+                    "settings": {
+                        "text": "NEW SEASON, NEW STYLES: FASHION SALE YOU CAN'T MISS"
+                    }
+                },
+                "announcement-bar-5": {
+                    "type": "announcement",
+                    "settings": {
+                        "text": "LIMITED TIME OFFER: FASHION SALE YOU CAN'T RESIST"
+                    }
+                },
+            },
+            "block_order": [
+                "announcement-bar-0",
+                "announcement-bar-1",
+                "announcement-bar-2",
+                "announcement-bar-3",
+                "announcement-bar-4",
+                "announcement-bar-5"
+            ],
+            "settings": {
+                "speed": 1
+            }
+        },
+        "header": {
+            "type": "header",
+            "settings": {
+                "show_logo": true,
+                "menu": "main-menu"
+            },
+            "blocks": {
+                "submenu": {
+                    "type": "submenu",
+                    "settings": {
+                        "submenu": "main-menu"
+                    }
+                }
+            },
+            "block_order": [
+                "submenu"
+            ]
+        }
+    },
+    "order": [
+        "announcement-bar",
+        "header"
+    ]
+}

@@ -70,7 +70,7 @@
                                         <div class="container">
                                             <div class="row">
                                                 {% for child in link.links %}
-                                                <div class="col-lg-2">
+                                                <div class="{% if block.settings.enable_collections %}col-lg-2{% else %}col-lg-4{% endif %}">
                                                     <div class="mega-menu-item">
                                                         <div class="menu-heading">
                                                             {{ child.title }}
@@ -86,42 +86,69 @@
                                                     </div>
                                                 </div>
                                                 {% endfor %}
+                                                {% assign active_item = false %}
+                                                {% assign items = block.settings.selected_items |  split: ', ' | join: ' ' %}
+                                                {% if items contains link.title %}
+                                                    {% assign active_item = true %}
+                                                {% endif %}
+                                                {% if block.settings.enable_collections and block.settings.enable_megamenu and active_item %}
+                                                {% if block.settings.collection_1 != blank %}
                                                 <div class="col-lg-3">
                                                     <div class="collection-item hover-img">
                                                         <div class="collection-inner">
-                                                            <a href="shop-men.html" class="collection-image img-style">
-                                                                <img class="lazyload"
-                                                                    data-src="images/collections/collection-1.jpg"
-                                                                    src="images/collections/collection-1.jpg"
-                                                                    alt="collection-demo-1">
+                                                            <a href="{{ block.settings.collection_1.url }}" class="collection-image img-style">
+                                                                {% if block.settings.collection_img_1 %}
+                                                                    {{ block.settings.collection_img_1 |  image_url: width: 300 | image_tag  }}
+                                                                {% else %}
+                                                                    {% if block.settings.collection_1.featured_image %}
+                                                                    <img class="lazyload"
+                                                                        data-src="{{ block.settings.collection_1.featured_image |  image_url }}"
+                                                                        src="{{ block.settings.collection_1.featured_image |  image_url }}"
+                                                                        alt="{{ block.settings.featured_image.alt }}">
+                                                                    {% else %}
+                                                                        {{ 'collection-1' |  placeholder_svg_tag }}
+                                                                    {% endif %}
+                                                                {% endif %}
                                                             </a>
                                                             <div class="collection-content">
-                                                                <a href="shop-men.html"
-                                                                    class="tf-btn hover-icon btn-xl collection-title fs-16"><span>Men</span><i
+                                                                <a href="{{ block.settings.collection_1.url }}"
+                                                                    class="tf-btn hover-icon btn-xl collection-title fs-16"><span>{{ block.settings.collection_1.title }}</span><i
                                                                         class="icon icon-arrow1-top-left"></i></a>
 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {% endif %}
+                                                {% if block.settings.collection_2 != blank %}
                                                 <div class="col-lg-3">
                                                     <div class="collection-item hover-img">
                                                         <div class="collection-inner">
-                                                            <a href="shop-women.html"
-                                                                class="collection-image img-style">
-                                                                <img class="lazyload"
-                                                                    data-src="images/collections/collection-2.jpg"
-                                                                    src="images/collections/collection-2.jpg"
-                                                                    alt="collection-demo-1">
+                                                            <a href="{{ block.settings.collection_2.url }}" class="collection-image img-style">
+                                                                {% if block.settings.collection_img_2 %}
+                                                                    {{ block.settings.collection_img_2 |  image_url: width: 300 | image_tag  }}
+                                                                {% else %}
+                                                                    {% if block.settings.collection_2.featured_image %}
+                                                                    <img class="lazyload"
+                                                                        data-src="{{ block.settings.collection_2.featured_image |  image_url }}"
+                                                                        src="{{ block.settings.collection_2.featured_image |  image_url }}"
+                                                                        alt="{{ block.settings.featured_image.alt }}">
+                                                                    {% else %}
+                                                                        {{ 'collection-2' |  placeholder_svg_tag }}
+                                                                    {% endif %}
+                                                                {% endif %}
                                                             </a>
                                                             <div class="collection-content">
-                                                                <a href="shop-women.html"
-                                                                    class="tf-btn btn-xl collection-title fs-16 hover-icon"><span>Women</span><i
+                                                                <a href="{{ block.settings.collection_2.url }}"
+                                                                    class="tf-btn hover-icon btn-xl collection-title fs-16"><span>{{ block.settings.collection_2.title }}</span><i
                                                                         class="icon icon-arrow1-top-left"></i></a>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {% endif %}
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +230,39 @@
             "id": "enable_megamenu",
             "label": "Enable megamenu",
             "default": true
-          }
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_collections",
+            "label": "Enable Collections",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "selected_items",
+            "label": "Menu items",
+            "info": "Insert comma(,) separeted value. i.e: Shop, Pages"
+          },
+          {
+            "type": "collection",
+            "id": "collection_1",
+            "label": "First collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "collection_img_1",
+            "label": "Collection image 1"
+          },
+          {
+            "type": "collection",
+            "id": "collection_2",
+            "label": "Second collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "collection_img_2",
+            "label": "Collection image 2"
+          },
         ]
       }
     ]
