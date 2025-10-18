@@ -1,0 +1,93 @@
+<!-- mobile menu -->
+    <div class="offcanvas offcanvas-start canvas-mb" id="mobileMenu">
+        <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
+        <div class="mb-canvas-content">
+            <div class="mb-body">
+                <ul class="nav-ul-mb" id="wrapper-menu-navigation"> 
+                    {% for link in section.settings.mobile_menu.links %}  
+                        {% if link.links.size > 0 %}                 
+                        <li class="nav-mb-item">
+                            <a href="#dropdown-menu-{{ forloop.index }}" class="collapsed mb-menu-link current" data-bs-toggle="collapse"
+                                aria-expanded="true" aria-controls="dropdown-menu-{{ forloop.index }}">
+                                <span>{{ link.title }}</span>
+                                <span class="btn-open-sub"></span>
+                            </a>
+                            <div id="dropdown-menu-{{ forloop.index }}" class="collapse">
+                                <ul class="sub-nav-menu" id="sub-menu-navigation">
+                                    {% for child in link.links %}
+                                        {% if child.links.size > 0 %}
+                                    <li>
+                                        <a href="#sub-shop-{{ forloop.index }}" class="sub-nav-link collapsed" data-bs-toggle="collapse"
+                                            aria-expanded="true" aria-controls="sub-shop-{{ forloop.index }}">
+                                            <span>{{ child.title }}</span>
+                                            <span class="btn-open-sub"></span>
+                                        </a>
+                                        <div id="sub-shop-{{ forloop.index }}" class="collapse">
+                                            <ul class="sub-nav-menu sub-menu-level-2">
+                                                {% for grandchild in child.links %}
+                                                <li><a href="{{ grandchild.url }}" class="sub-nav-link">{{ grandchild.title }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ child.url }}" class="sub-nav-link" aria-controls="sub-shop-{{ forloop.index }}">
+                                                <span>{{ child.title }}</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-mb-item">
+                            <a href="{{ link.url }}" class="mb-menu-link">
+                                <span>{{ link.title }}</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <div class="mb-other-content">
+                    <div class="d-flex group-icon">
+                        <a href="wishlist.html" class="site-nav-icon"><i class="icon icon-heart"></i>Wishlist</a>
+                        <a href="home-search.html" class="site-nav-icon"><i class="icon icon-search"></i>Search</a>
+                    </div>
+                    {% if settings.brand_headline != blank %}
+                    <div class="mb-notice">
+                        {{ settings.brand_headline }}
+                    </div>
+                    {% endif %}
+                    {% if settings.brand_description != blank %}
+                    <ul class="mb-info">
+                        {{ settings.brand_description }}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /mobile menu -->
+
+    {% schema %}
+        {
+            "name": "Mobile Menu",
+            "enabled_on": {"groups": ["header"]},
+            "settings": [
+                {
+                    "type": "link_list",
+                    "id": "mobile_menu",
+                    "label": "Mobile Menu",
+                    "default": "main-menu"
+                }
+            ],
+            "presets": [
+                {
+                    "name": "Mobile Menu"
+                }
+            ]
+        }
+    {% endschema %}
+    

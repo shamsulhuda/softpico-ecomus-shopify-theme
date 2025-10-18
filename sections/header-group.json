@@ -71,10 +71,14 @@
             "block_order": [
                 "submenu"
             ]
+        },
+        "mobile-menu": {
+            "type": "mobile-menu"
         }
     },
     "order": [
         "announcement-bar",
-        "header"
+        "header",
+        "mobile-menu"
     ]
 }

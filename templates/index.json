@@ -9,47 +9,57 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "slider_banner": {
+      "type": "slideshow",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slider-0": {
+          "type": "slider",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "heading": "Our Best Selling products",
+            "text": "<p>Check out best selling product collections</p>",
+            "button_label": "Shop Now",
+            "button_url": "#"
           }
         },
-        "button": {
-          "type": "buttons",
+        "slider-1": {
+          "type": "slider",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "heading": "Our Best Selling products",
+            "text": "<p>Check out best selling product collections</p>",
+            "button_label": "Shop Now",
+            "button_url": "#"
+          }
+        },
+        "slider-2": {
+          "type": "slider",
+          "settings": {
+            "heading": "Our Best Selling products",
+            "text": "<p>Check out best selling product collections</p>",
+            "button_label": "Shop Now",
+            "button_url": "#"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "slider-0",
+        "slider-1",
+        "slider-2"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "desktop_view": "1",
+        "tablet_view": "1",
+        "Mobile_view": "1",
+        "centered": false,
+        "space": 0,
+        "loop": true,
+        "autoplay": false,
+        "delay": 2,
+        "speed": 1,
+        "pagination": true
       }
     }
   },
   "order": [
-    "image_banner"
+    "slider_banner"
   ]
 }

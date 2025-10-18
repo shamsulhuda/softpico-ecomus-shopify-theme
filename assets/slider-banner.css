@@ -1,0 +1,72 @@
+/*------------ slider banner ---------------- */
+.wrap-slider {
+  position: relative;
+}
+.wrap-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wrap-slider .box-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wrap-slider .box-content .heading, .wrap-slider .box-content h1 {
+  margin-bottom: 18px;
+}
+.wrap-slider .box-content .heading.mb_38, .wrap-slider .box-content h1.mb_38 {
+  margin-bottom: 38px;
+}
+.wrap-slider .box-content p {
+  margin-bottom: 48px;
+  font-size: 20px;
+  line-height: 24px;
+}
+.wrap-slider .box-content p.mb_15 {
+  margin-bottom: 15px;
+}
+.wrap-slider .box-content p.sale_off {
+  background-color: #ff5c39;
+  padding: 5px 20px;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+}
+.tf-slideshow {
+  overflow: hidden;
+}
+.tf-slideshow .wrap-pagination {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+.tf-slideshow .wrap-pagination .sw-dots {
+  margin-top: 0;
+}
+.tf-slideshow .sw-absolute-3 {
+  right: 3%;
+  left: unset;
+  width: auto;
+}
+.tf-slideshow .sw-absolute-3 .sw-dots {
+  flex-direction: column;
+}
+.tf-slideshow .card-box {
+  padding: 64px 48px 70px;
+  border-radius: 10px;
+  max-width: 550px;
+}
+.tf-slideshow .card-box .heading {
+  margin-bottom: 38px;
+}
+.tf-slideshow .subheading {
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 22.4px;
+}

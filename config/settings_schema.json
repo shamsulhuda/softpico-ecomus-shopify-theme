@@ -1267,21 +1267,21 @@
     ]
   },
   {
-    "name": "t:settings_schema.brand_information.name",
+    "name": "Branding",
     "settings": [
       {
         "type": "paragraph",
-        "content": "t:settings_schema.brand_information.settings.paragraph.content"
+        "content": "Displays in the footer's brand information block"
       },
       {
         "type": "inline_richtext",
         "id": "brand_headline",
-        "label": "t:settings_schema.brand_information.settings.brand_headline.label"
+        "label": "Brand heading"
       },
       {
         "type": "richtext",
         "id": "brand_description",
-        "label": "t:settings_schema.brand_information.settings.brand_description.label"
+        "label": "Brand Description"
       },
       {
         "type": "image_picker",

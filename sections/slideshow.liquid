@@ -1,0 +1,285 @@
+<!-- slider -->
+ {{ 'slider-banner.css' | asset_url | stylesheet_tag }}
+ {% style %}
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top |  append: 'px' }};
+        padding-top: {{ section.settings.padding_bottom |  append: 'px' }};
+    }
+
+    @media screen and (max-width: 750px){
+        .padding-{{ section.id }}{
+            padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+            padding-top: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+        }
+    }
+ {% endstyle %}
+<div class="tf-slideshow slider-women slider-effect-fade position-relative padding-{{ section.id }}">
+    <div dir="ltr" class="swiper tf-sw-slideshow" data-preview="{{ section.settings.desktop_view }}" data-tablet="{{ section.settings.tablet_view }}" data-mobile="{{ section.settings.mobile_view }}"
+        data-centered="{{ section.settings.centered }}" data-space="{{ section.settings.space }}" data-loop="{{ section.settings.loop }}" data-auto-play="{{ section.settings.autoplay }}" data-delay="{{ section.settings.delay | times: 1000 }}"
+        data-speed="{{ section.settings.speed | times: 1000 }}">
+        <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+            <div class="swiper-slide" lazy="true">
+                <div class="wrap-slider">
+                    {% if block.settings.image %}
+                        {{ block.settings.image |  image_url: width: 1080 | image_tag: sizes: "400, 450,500,550,600,700,750,800,900,1000,1080,12000", alt: block.settings.image.alt, class:'lazyload'}}
+                    {% else %}
+                        {{ 'lifestyle-1' | placeholder_svg_tag }}
+                    {% endif %}
+                    <div class="box-content">
+                        <div class="container">
+                            {% if block.settings.heading != blank %}
+                            <h1 class="fade-item fade-item-1">{{ block.settings.heading }}</h1>
+                            {% endif %}
+                            {% if block.settings.text != blank %}
+                            <div class="fade-item fade-item-2">
+                                {{ block.settings.text }}
+                            </div>
+                            {% endif %}
+                            {% if block.settings.button_label != blank %}
+                            <a href="{{block.settings.button_url}}"
+                                class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-60">
+                                <span>{{ block.settings.button_label }}</span><i class="icon icon-arrow-right"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if section.settings.pagination %}
+    <div class="wrap-pagination">
+        <div class="container">
+            <div class="sw-dots sw-pagination-slider justify-content-center"></div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<!-- /slider -->
+
+{% schema %}
+    {
+        "name": "Slide Show",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Slider settings"
+            },
+            {
+                "type": "select",
+                "id": "desktop_view",
+                "label": "Desktop slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    }
+                ],
+                "default": "1"
+            },
+            {
+                "type": "select",
+                "id": "tablet_view",
+                "label": "Table slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    }
+                ],
+                "default": "1"
+            },
+            {
+                "type": "select",
+                "id": "Mobile_view",
+                "label": "Mobile slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    }
+                ],
+                "default": "1"
+            },
+            {
+                "type": "checkbox",
+                "id": "centered",
+                "label": "Centered",
+                "default": false
+            },
+            {
+                "type": "range",
+                "id": "space",
+                "label": "Space",
+                "min": 0,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 0
+            },
+            {
+                "type": "checkbox",
+                "id": "loop",
+                "label": "Slider loop",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "autoplay",
+                "label": "Autoplay",
+                "default": false
+            },
+            {
+                "type": "range",
+                "id": "delay",
+                "label": "Delay",
+                "min": 1,
+                "max": 5,
+                "step": 1,
+                "default": 2
+            },
+            {
+                "type": "range",
+                "id": "speed",
+                "label": "Speed",
+                "min": 1,
+                "max": 5,
+                "step": 1,
+                "default": 1
+            },
+            {
+                "type": "checkbox",
+                "id": "pagination",
+                "label": "Pagination",
+                "default": true
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "blocks": [
+            {
+                "type": "slider",
+                "name": "Slider",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Image"
+                    },
+                    {
+                        "type": "inline_richtext",
+                        "id": "heading",
+                        "label": "Heading",
+                        "default": "Our Best Selling products"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "text",
+                        "label": "Text"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Button"
+                    },
+                    {
+                        "type": "text",
+                        "id": "button_label",
+                        "label": "Label",
+                        "default": "Shop Now"
+                    },
+                    {
+                        "type": "url",
+                        "id": "button_url",
+                        "label": "Link"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Slide Show",
+                "blocks": [
+                    {
+                        "type": "slider",
+                        "settings":{
+                            "heading": "Our Collection",
+                            "text": "<p>Check out our best selling items from here!</p>",
+                            "button_label": "Shop Now",
+                            "button_url": "#"
+                        }
+                    },
+                    {
+                        "type": "slider",
+                        "settings":{
+                            "heading": "Best selling products",
+                            "text": "<p>Check out our best selling items from here!</p>",
+                            "button_label": "Shop Now",
+                            "button_url": "#"
+                        }
+                    },
+                    {
+                        "type": "slider",
+                        "settings":{
+                            "heading": "Winter Collection",
+                            "text": "<p>Check out our best selling items from here!</p>",
+                            "button_label": "Shop Now",
+                            "button_url": "#"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
