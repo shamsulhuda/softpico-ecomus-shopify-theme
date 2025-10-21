@@ -3,23 +3,23 @@
  {% style %}
     .padding-{{ section.id }}{
         padding-top: {{ section.settings.padding_top |  append: 'px' }};
-        padding-top: {{ section.settings.padding_bottom |  append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
     }
 
     @media screen and (max-width: 750px){
         .padding-{{ section.id }}{
             padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
-            padding-top: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+            padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
         }
     }
  {% endstyle %}
-<div class="tf-slideshow slider-women slider-effect-fade position-relative padding-{{ section.id }}">
+<div class="tf-slideshow slider-women slider-effect-fade position-relative padding-{{ section.id }} color-{{ section.settings.color }} gradient">
     <div dir="ltr" class="swiper tf-sw-slideshow" data-preview="{{ section.settings.desktop_view }}" data-tablet="{{ section.settings.tablet_view }}" data-mobile="{{ section.settings.mobile_view }}"
         data-centered="{{ section.settings.centered }}" data-space="{{ section.settings.space }}" data-loop="{{ section.settings.loop }}" data-auto-play="{{ section.settings.autoplay }}" data-delay="{{ section.settings.delay | times: 1000 }}"
         data-speed="{{ section.settings.speed | times: 1000 }}">
         <div class="swiper-wrapper">
             {% for block in section.blocks %}
-            <div class="swiper-slide" lazy="true">
+            <div class="swiper-slide" lazy="true" {{ block.shopify_attributes }}>
                 <div class="wrap-slider">
                     {% if block.settings.image %}
                         {{ block.settings.image |  image_url: width: 1080 | image_tag: sizes: "400, 450,500,550,600,700,750,800,900,1000,1080,12000", alt: block.settings.image.alt, class:'lazyload'}}
@@ -63,6 +63,12 @@
     {
         "name": "Slide Show",
         "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color",
+                "label": "Color",
+                "default": "scheme-1"
+            },
             {
                 "type": "header",
                 "content": "Slider settings"

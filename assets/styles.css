@@ -321,6 +321,10 @@ li {
   margin-left: auto;
   margin-right: auto;
 }
+.tf-btn {
+  background-color: rgba(var(--color-button));
+  color: rgba(var(--color-button-text));
+}
 
 textarea,
 input[type=text],
@@ -459,7 +463,7 @@ h5,
 h6 {
   font-family: "Albert Sans", sans-serif;
   text-rendering: optimizeLegibility;
-  color: var(--main);
+  color: rgba(var(--color-foreground));
   font-weight: 400;
 }
 
@@ -3698,7 +3702,7 @@ header.header-bg {
   border-radius: 3px;
   align-items: center;
   border: 1px solid transparent;
-  background-color: transparent;
+  background-color: rgba(var(--color-button));
   cursor: pointer;
 }
 .tf-btn.hover-icon .icon {
@@ -7608,14 +7612,13 @@ header.header-bg {
   height: 40px;
   font-size: 16px;
   padding: 0px 14px;
-  background-color: var(--white);
   border-radius: 3px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .collection-item .collection-title .icon {
-  color: var(--white);
+  color: rgba(var(--color-button-text));
   margin: 0;
 }
 .collection-item .collection-title:hover {
@@ -7717,6 +7720,7 @@ header.header-bg {
   font-size: 18px;
   line-height: 21.6px;
   text-transform: capitalize;
+  color: rgba(var(--color-foreground));
 }
 .collection-item-v4 .collection-content .subheading {
   font-size: 14px;
@@ -9796,8 +9800,8 @@ header.header-bg {
   border-radius: 999px;
 }
 .card-product.style-8 .card-product-info .tf-btn:hover {
-  background-color: var(--main);
-  color: var(--white);
+  background-color: rgba(var(--color-button));
+  color: rgba(var(--color-button-text));
 }
 .card-product.style-8 .progress {
   --bs-progress-height: 6px;
@@ -16550,6 +16554,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
   .collection-item-v4 .collection-content .heading {
     font-size: 20px;
     line-height: 24px;
+    color: rgba(var(--color-foreground));
   }
   .collection-item-v5 .collection-content {
     left: 25px;
@@ -17977,6 +17982,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
   .collection-item-v4 .collection-content .heading {
     font-size: 28px;
     line-height: 33.6px;
+    color: rgba(var(--color-foreground));
   }
   .collection-item-v5 .collection-content .collection-title {
     padding: 14px 16px;
