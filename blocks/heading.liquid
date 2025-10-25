@@ -1,0 +1,20 @@
+<div class="heading">{{ block.settings.heading |  default: 'Heading text' }}</div>
+
+{% schema %}
+    {
+        "name": "Heading",
+        "settings": [
+            {
+                "type": "inline_richtext",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Redefining Fashion Excellence"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Heading"
+            }
+        ]
+    }
+{% endschema %}

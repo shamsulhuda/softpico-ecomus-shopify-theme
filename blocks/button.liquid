@@ -1,0 +1,25 @@
+<a href="{{ block.settings.btn_url |  default:'#' }}" class="tf-btn style-2 btn-fill rounded-full animate-hover-btn">{{ block.settings.btn_label }}</a>
+
+{% schema %}
+    {
+        "name": "Button",
+        "settings": [ 
+            {
+                "type": "text",
+                "id": "btn_label",
+                "label": "Button label",
+                "default": "Shop Now"
+            },
+            {
+                "type": "url",
+                "id": "btn_url",
+                "label": "Button Link"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Button"
+            }
+        ]
+    }
+{% endschema %}

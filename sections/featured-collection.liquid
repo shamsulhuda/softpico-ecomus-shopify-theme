@@ -1,0 +1,201 @@
+<!-- Best seller -->
+ {{ 'card-product-component.css' | asset_url | stylesheet_tag }}
+  {% style %}
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top |  append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+    }
+
+    @media screen and (max-width: 750px){
+        .padding-{{ section.id }}{
+            padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+            padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+        }
+    }
+ {% endstyle %}
+<section class="flat-spacing-15 padding-{{ section.id }} color-{{ section.settings.color }} gradient">
+    <div class="container">
+        <div class="flat-title wow fadeInUp" data-wow-delay="0s">
+            {% if section.settings.heading != blank %}
+            <span class="title">{{ section.settings.heading }}</span>
+            {% endif %}
+            {% if section.settings.sub_heading != blank %}
+            <div class="sub-title">{{ section.settings.sub_heading }}</div>
+            {% endif %}
+        </div>
+        <div class="hover-sw-nav hover-sw-3">
+            <div dir="ltr" class="swiper tf-sw-product-sell wrap-sw-over" data-preview="{{ section.settings.desktop_view }}" data-tablet="{{ section.settings.tablet_view }}" data-mobile="{{ section.settings.mobile_view }}" data-space-lg="30" data-space-md="30" data-space="{{ section.settings.space }}" data-pagination="2" data-pagination-md="3" data-pagination-lg="3">
+                <div class="swiper-wrapper">
+                {% if section.settings.collection != blank %}
+                    {% for product in section.settings.collection.products %}
+                    <div class="swiper-slide" lazy="true">
+                        {% render 'card-product', product: product %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    {% for i in (1..6) %}
+                        <div class="swiper-slide" lazy="true">
+                            {% render 'card-product-placeholder', forloop: forloop %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            {% if section.settings.slider_arrow %}
+            <div class="nav-sw nav-next-slider nav-next-product box-icon w_46 round"><span
+                    class="icon icon-arrow-left"></span></div>
+            <div class="nav-sw nav-prev-slider nav-prev-product box-icon w_46 round"><span
+                    class="icon icon-arrow-right"></span></div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<!-- /Best seller -->
+
+{% schema %}
+    {
+        "name": "Featured collection",
+        "settings": [
+            {
+                "type": "inline_richtext",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Ecomus’s Favorites"
+            },
+            {
+                "type": "richtext",
+                "id": "sub_heading",
+                "label": "Sub heading",
+                "default": "<p>Beautifully Functional. Purposefully Designed. Consciously Crafted.</p>"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "Collection"
+            },
+            {
+                "type": "color_scheme",
+                "id": "color",
+                "label": "Color",
+                "default": "scheme-1"
+            },
+            {
+                "type": "header",
+                "content": "Slider settings"
+            },
+            {
+                "type": "select",
+                "id": "desktop_view",
+                "label": "Desktop slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    },
+                    {
+                        "label": "5",
+                        "value": "5"
+                    }
+                ],
+                "default": "4"
+            },
+            {
+                "type": "select",
+                "id": "tablet_view",
+                "label": "Table slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    }
+                ],
+                "default": "3"
+            },
+            {
+                "type": "select",
+                "id": "Mobile_view",
+                "label": "Mobile slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    }
+                ],
+                "default": "2"
+            },
+            {
+                "type": "range",
+                "id": "space",
+                "label": "Space",
+                "min": 0,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "checkbox",
+                "id": "slider_arrow",
+                "label": "Slider arrow",
+                "default": true
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "presets": [
+            {
+                "name": "Featured collection"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,122 @@
+.tf-img-with-text .tf-content-wrap {
+  place-self: center;
+}
+
+.tf-img-with-text.style-1 .tf-image-wrap {
+  order: unset;
+}
+.tf-img-with-text.style-2 {
+  gap: 0;
+}
+.tf-img-with-text.style-2 .tf-image-wrap {
+  order: unset;
+}
+.tf-img-with-text.style-2 .tf-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tf-img-with-text.style-3 .tf-image-wrap {
+  order: unset;
+}
+.tf-img-with-text.style-3 .tf-content-wrap {
+  width: 100%;
+  height: 100%;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tf-img-with-text.style-4 .grid-img-group {
+  padding-bottom: 50px;
+}
+.tf-img-with-text.style-4 .tf-image-wrap {
+  order: unset;
+}
+.tf-img-with-text.style-4 .heading {
+  font-size: 28px;
+  line-height: 33.6px;
+}
+.tf-img-with-text.style-4 .text {
+  margin-top: 18px;
+}
+.tf-img-with-text.style-4 .item-2 {
+  margin-left: unset;
+  width: 75%;
+}
+.tf-img-with-text.style-4 .item-1 {
+  width: 43%;
+  bottom: 0;
+  right: 0;
+  height: max-content;
+  top: unset;
+}
+.tf-img-with-text.style-5 {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.tf-img-with-text.style-5 .tf-image-wrap {
+  order: unset;
+}
+.tf-img-with-text.style-6 {
+  background-color: #eaf7f9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.tf-img-with-text .tf-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tf-img-with-text.bg-f5fbfd {
+  background-color: #f5fbfd;
+}
+.tf-img-with-text.bg_primary {
+  background-color: var(--primary);
+}
+
+.tf-img-with-text-2 .tf-image-wrap {
+  border-radius: 20px;
+}
+.tf-img-with-text-2 .tf-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tf-img-with-text-2 .tf-content-wrap {
+  place-self: center;
+  padding: 14px 14px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.tf-img-with-text-2 .tf-content-wrap .item {
+  display: grid;
+  gap: 14px;
+}
+.tf-img-with-text-2.style-2 {
+  border-radius: 20px;
+}
+.tf-img-with-text-2 .item-list-box {
+  display: flex;
+  gap: 12px;
+}
+.tf-img-with-text-2 .item-list-box .content {
+  display: grid;
+  gap: 16px;
+}
+.tf-img-with-text-2 .item-list-box .img-box {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  padding: 10px;
+  border: 2px solid #557328;
+  border-radius: 9999px;
+}
+.tf-img-with-text-2 .item-list-box .img-box img {
+  border-radius: 9999px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

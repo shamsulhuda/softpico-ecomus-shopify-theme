@@ -130,11 +130,40 @@
         "collection-0",
         "collection-1"
       ]
+    },
+    "featured-collection":{
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Ecomus’s Favorites",
+        "sub_heading": "<p>Beautifully Functional. Purposefully Designed. Consciously Crafted.</p>"
+      }
+    },
+    "image-with-text":{
+      "type": "image-with-text",
+      "blocks": {
+        "block-0": {
+          "type": "heading"
+        },
+        "block-1": {
+          "type": "text"
+        },
+        "block-2": {
+          "type": "button"
+        }
+      },
+      "block_order": [
+        "block-0",
+        "block-1",
+        "block-2"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "slider_banner",
     "categories",
-    "banner-collection"
+    "banner-collection",
+    "featured-collection",
+    "image-with-text"
   ]
 }

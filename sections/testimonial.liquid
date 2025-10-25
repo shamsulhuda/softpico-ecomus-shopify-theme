@@ -1,0 +1,227 @@
+<!-- sections/testimonial.liquid -->
+{{ 'component-testimonial.css' |  asset_url |  stylesheet_tag }}
+ {% style %}
+.padding-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top |  append: 'px' }};
+    padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+}
+
+@media screen and (max-width: 750px){
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+    }
+}
+{% endstyle %}
+<section class="flat-testimonial-v2 wow fadeInUp padding-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" data-wow-delay="0s">
+    <div class="container">
+        <div class="wrapper-thumbs-testimonial-v2 type-1 flat-thumbs-testimonial">
+            <div class="box-left">
+                <div dir="ltr" class="swiper tf-sw-tes-2" data-preview="1" data-space-lg="40"
+                    data-space-md="30">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            {%  assign block_settings = block.settings %}
+                        <div class="swiper-slide">
+                            <div class="testimonial-item lg lg-2">
+                                {% if block_settings.icon %}
+                                <div class="icon">
+                                    {{ block_settings.icon |  image_url: width: 35 | image_tag: class: 'lazyloaded', alt: block_settings.product.title  }}
+                                </div>
+                                {% endif %}
+                                <div class="heading fs-12 mb_18">{{ block_settings.heading | default: 'Testimonial Heading' }}</div>
+                                
+                                <div class="rating">
+                                    {% for i in (1..5) %}
+                                        {% if block_settings.rating >= forloop.index %}
+                                        <i class="icon-star"></i>
+                                        {% else %}
+                                        <i class="icon-star blank"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% if block_settings.description != blank %}
+                                <div class="text">
+                                    {{ block_settings.description }}
+                                </div>
+                                {% endif %}
+                                <div class="author box-author">
+                                    <div class="box-img d-md-none rounded-0">
+                                        {% if block_settings.product != blank %}
+                                        {{ block_settings.product.featured_image |  image_url: width: 400 |  image_tag: sizes: '200,300,400', class:'lazyload img-product', alt: block_settings.product.title }}
+                                        {% else %}
+                                        {{ 'product-1' | placeholder_svg_tag }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="content">
+                                        {% if block_settings.author != blank %}
+                                        <div class="name">{{ block_settings.author }}</div>
+                                        {% endif %}
+                                        <a href="{{ block_settings.product.url }}" class="metas link">Purchase item :
+                                            <span>{{ block_settings.product.title | escape |  default: 'Product title' }}</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="d-md-flex d-none box-sw-navigation">
+                    <div class="nav-sw nav-next-slider nav-next-tes-2"><span
+                            class="icon icon-arrow-left"></span></div>
+                    <div class="nav-sw nav-prev-slider nav-prev-tes-2"><span
+                            class="icon icon-arrow-right"></span></div>
+                </div>
+                <div class="d-md-none sw-dots style-2 sw-pagination-tes-2"></div>
+            </div>
+            <div class="box-right">
+                <div dir="ltr" class="swiper tf-thumb-tes" data-preview="1" data-space="30">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                                {% if block.settings.product != blank %}
+                                    <div class="swiper-slide">
+                                        <div class="grid-img-group style-ter-1">
+                                            {% for image in block.settings.product.images, limit: 2 %}
+                                            <div class="box-img item-{{ forloop.index }} hover-img">
+                                                <div class="img-style">
+                                                    {{ image |  image_url: width: 500 |  image_tag: sizes: "150,200,250,300, 400,500", class: 'lazyload img-product', alt: block.settings.product.title  }}
+                                                </div>
+                                                
+                                            </div>
+                                            {% if block.settings.product.images.size == 1 %}
+                                            <div class="box-img item-2 hover-img">
+                                                <div class="img-style blank">
+                                                {{ 'product-apparel-1' | placeholder_svg_tag }}
+                                                </div>
+                                            </div>        
+                                            {% endif %}
+
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="swiper-slide">
+                                        <div class="grid-img-group style-ter-1">
+                                            <div class="box-img item-1 hover-img">
+                                                <div class="img-style blank">
+                                                    {{ 'product-1' | placeholder_svg_tag }}
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="box-img item-2 hover-img">
+                                                <div class="img-style blank">
+                                                {{ 'product-2' | placeholder_svg_tag }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Testimonial -->
+
+{% schema %}
+    {
+        "name": "Testimonial",
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color_scheme",
+                "label": "Color scheme",
+                "default": "scheme-1"
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "blocks": [
+            {
+                "type": "testimonial",
+                "name": "Testimonial",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "icon",
+                        "label": "Icon"
+                    },
+                    {
+                        "type": "text",
+                        "id": "heading",
+                        "label": "Heading",
+                        "default": "PEOPLE ARE TALKING"
+                    },
+                    {
+                        "type": "range",
+                        "id": "rating",
+                        "label": "Rating",
+                        "min": 1,
+                        "max": 5,
+                        "step": 1,
+                        "default": 5
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "description",
+                        "label": "Description",
+                        "default": "<p>The shipping is always fast and the customer service team is friendly and helpful. I highly recommend this site to anyone looking for affordable clothing.</p>"                 
+                    },
+                    {
+                        "type": "header",
+                        "content": "Author box"
+                    },
+                    {
+                        "type": "text",
+                        "id": "author",
+                        "label": "Author name",
+                        "default": "Robert Smith"
+                    },
+                    {
+                        "type": "product",
+                        "id": "product",
+                        "label": "Product"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Testimonial",
+                "blocks": [
+                    {
+                        "type": "testimonial"
+                    },
+                    {
+                        "type": "testimonial"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

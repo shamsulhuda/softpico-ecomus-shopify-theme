@@ -56,7 +56,7 @@
     {% assign block = section.blocks.first %}
     {% assign links = block.settings.submenu.links %}
     {% if block.type == 'submenu' %}
-    <div class="header-bottom line">
+    <div class="header-bottom line" {{ block.shopify_attributes }}>
         <div class="container-full px_15 lg-px_40">
             <div class="wrapper-header d-flex justify-content-center align-items-center">
                 <nav class="box-navigation text-center">

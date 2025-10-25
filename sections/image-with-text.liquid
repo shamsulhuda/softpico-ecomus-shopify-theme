@@ -1,0 +1,111 @@
+<!-- sections/image-with-text.liquid -->
+ {{ 'image-text.css' | asset_url | stylesheet_tag }}
+{% style %}
+.padding-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top |  append: 'px' }};
+    padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+}
+
+@media screen and (max-width: 750px){
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+    }
+}
+{% endstyle %}
+<section class="flat-spacing-19 color-{{ section.settings.color_scheme }} gradient padding-{{ section.id }}">
+    <div class="container">
+        <div class="tf-grid-layout md-col-2 tf-img-with-text style-1 color-{{ section.settings.color_scheme_container }}">
+            <div class="tf-image-wrap wow fadeInUp" data-wow-delay="0s">
+                {% if section.settings.image %}
+                {{ section.settings.image |  image_url: width: 1000 |  image_tag: sizes: "400,450,500,550,600,650,700,800,900,1000", class: "lazyload", alt: section.settings.image.alt }}
+                {% else %}
+                {{ 'collection-1' | placeholder_svg_tag }}
+                {% endif %}
+            </div>
+            <div class="tf-content-wrap wow fadeInUp" data-wow-delay="0s">
+                {% content_for 'blocks' %} 
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /image-with-text -->
+
+{% schema %}
+    {
+        "name": "Image with text",
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color_scheme",
+                "label": "Color scheme",
+                "default": "scheme-1"
+            },
+            {
+                "type": "color_scheme",
+                "id": "color_scheme_container",
+                "label": "Color scheme container",
+                "default": "scheme-2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "blocks": [
+            {
+                "type": "heading"
+            },
+            {
+                "type": "text"
+            },
+            {
+                "type": "button"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Image with text",
+                "blocks": [
+                    {
+                        "type": "heading"
+                    },
+                    {
+                        "type": "text"
+                    },
+                    {
+                        "type": "button",
+                        "settings": {
+                            "btn_label": "Read our stories"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

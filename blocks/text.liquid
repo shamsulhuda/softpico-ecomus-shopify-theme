@@ -1,0 +1,20 @@
+<div class="description">{{ block.settings.text }}</div>
+
+{% schema %}
+    {
+        "name": "Text",
+        "settings": [
+            {
+                "type": "richtext",
+                "id": "text",
+                "label": "Text",
+                "default": "<p>Here is your chance to upgrade your wardrobe with a variation of styles</p>"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Text"
+            }
+        ]
+    }
+{% endschema %}
