@@ -1,13 +1,13 @@
 <!-- sections/testimonial.liquid -->
 {{ 'component-testimonial.css' |  asset_url |  stylesheet_tag }}
  {% style %}
-.padding-{{ section.id }}{
+.padding-{{ section.id }} {
     padding-top: {{ section.settings.padding_top |  append: 'px' }};
     padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
 }
 
 @media screen and (max-width: 750px){
-    .padding-{{ section.id }}{
+    .padding-{{ section.id }} {
         padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
         padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
     }
@@ -21,7 +21,7 @@
                     data-space-md="30">
                     <div class="swiper-wrapper">
                         {% for block in section.blocks %}
-                            {%  assign block_settings = block.settings %}
+                        {%  assign block_settings = block.settings %}
                         <div class="swiper-slide">
                             <div class="testimonial-item lg lg-2">
                                 {% if block_settings.icon %}

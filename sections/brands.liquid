@@ -1,0 +1,216 @@
+<!-- Brand -->
+{% style %}
+.padding-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top |  append: 'px' }};
+    padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+}
+
+@media screen and (max-width: 750px){
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+    }
+}
+{% endstyle %}
+<section class="flat-spacing-12 padding-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+    <div class="wrap-carousel wrap-brand wrap-brand-v2 autoplay-linear">
+        <div dir="ltr" class="swiper tf-sw-brand border-0" data-play="{{ section.settings.autoplay }}" data-loop="{{ section.settings.loop }}" data-preview="{{ section.settings.desktop_view }}"
+            data-tablet="{{ section.settings.tablet_view }}" data-mobile="{{ section.settings.mobile_view }}" data-space-lg="{{ section.settings.space_lg }}" data-space-md="{{ section.settings.space_md }}" data-delay="0"
+                data-speed="2000">
+            <div class="swiper-wrapper">
+                {% content_for 'blocks' %}                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Brand -->
+
+{% schema %}
+    {
+        "name": "Brands",
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color_scheme",
+                "label": "Color scheme",
+                "default": "scheme-1"
+            },
+            {
+                "type": "header",
+                "content": "Slider settings"
+            },
+            {
+                "type": "checkbox",
+                "id": "autoplay",
+                "label": "Autoplay",
+                "default": false
+            },
+            {
+                "type": "checkbox",
+                "id": "loop",
+                "label": "Loop",
+                "default": true
+            },
+            {
+                "type": "select",
+                "id": "desktop_view",
+                "label": "Desktop slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    },
+                    {
+                        "label": "5",
+                        "value": "5"
+                    },
+                    {
+                        "label": "6",
+                        "value": "6"
+                    },
+                    {
+                        "label": "7",
+                        "value": "7"
+                    }
+                ],
+                "default": "6"
+            },
+            {
+                "type": "select",
+                "id": "tablet_view",
+                "label": "Table slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    },
+                    {
+                        "label": "5",
+                        "value": "5"
+                    }
+                ],
+                "default": "4"
+            },
+            {
+                "type": "select",
+                "id": "Mobile_view",
+                "label": "Mobile slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    }
+                ],
+                "default": "2"
+            },
+            {
+                "type": "range",
+                "id": "space_lg",
+                "label": "Desktop Space",
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "unit": "px",
+                "default": 30
+            },
+            {
+                "type": "range",
+                "id": "space_md",
+                "label": "Tablet Space",
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "checkbox",
+                "id": "slider_arrow",
+                "label": "Slider arrow",
+                "default": true
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "blocks": [
+            {
+                "type": "brand-item"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Brands",
+                "blocks": [
+                    {
+                        "type": "brand-item"
+                    },
+                    {
+                        "type": "brand-item"
+                    },
+                    {
+                        "type": "brand-item"
+                    },
+                    {
+                        "type": "brand-item"
+                    },
+                    {
+                        "type": "brand-item"
+                    },
+                    {
+                        "type": "brand-item"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

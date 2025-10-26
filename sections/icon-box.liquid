@@ -1,0 +1,122 @@
+<!-- Icon box -->
+ {{ 'icon-box.css' | asset_url | stylesheet_tag }}
+ {% style %}
+.padding-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top |  append: 'px' }};
+    padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+}
+
+@media screen and (max-width: 750px){
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+    }
+}
+{% endstyle %}
+<section class="flat-spacing-11 padding-{{ section.id }} color-{{ section.settings.color_scheme }} gradient flat-iconbox wow fadeInUp" data-wow-delay="0s">
+    <div class="container">
+        <div class="wrap-carousel wrap-mobile">
+            <div dir="ltr" class="swiper tf-sw-mobile" data-preview="1" data-space="15">
+                <div class="swiper-wrapper wrap-iconbox">
+                    {% content_for 'blocks' %} 
+                </div>
+            </div>
+            <div class="sw-dots style-2 sw-pagination-mb justify-content-center"></div>
+        </div>
+    </div>
+</section>
+<!-- /Icon box -->
+
+{% schema %}
+    {
+        "name": "Icon Box",
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color_scheme",
+                "label": "Color scheme",
+                "default": "scheme-1"
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "blocks": [
+            {
+                "type": "icon-box"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Icon Box",
+                "blocks": [
+                    {
+                        "type": "icon-box",
+                        "blocks": [
+                            {
+                                "type": "icon"
+                            },
+                            {
+                                "type": "content"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "icon-box",
+                        "blocks": [
+                            {
+                                "type": "icon"
+                            },
+                            {
+                                "type": "content"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "icon-box",
+                        "blocks": [
+                            {
+                                "type": "icon"
+                            },
+                            {
+                                "type": "content"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "icon-box",
+                        "blocks": [
+                            {
+                                "type": "icon"
+                            },
+                            {
+                                "type": "content"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

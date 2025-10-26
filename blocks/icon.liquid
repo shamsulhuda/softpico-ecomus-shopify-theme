@@ -1,0 +1,69 @@
+<div class="icon">
+    {% if block.settings.image %}
+    {{ block.settings.image |  image_url: width: 30 | image_tag: alt: 'Icon' }}
+    {% else %}
+    <i class="{{ block.settings.icon }}"></i>
+    {% endif %}
+</div>
+
+{% schema %}
+    {
+        "name": "Icon",
+        "settings": [
+            {
+                "type": "select",
+                "id": "icon",
+                "label": "Icon",
+                "options": [
+                    {
+                        "label": "Shipping",
+                        "value": "icon-shipping"
+                    },
+                    {
+                        "label": "Payment",
+                        "value": "icon-payment fs-22"
+                    },
+                    {
+                        "label": "Return",
+                        "value": "icon-return fs-22"
+                    },
+                    {
+                        "label": "Support",
+                        "value": "icon-suport"
+                    },
+                    {
+                        "label": "Beach",
+                        "value": "icon-beach"
+                    },
+                    {
+                        "label": "Calendar",
+                        "value": "icon-calendar"
+                    },
+                    {
+                        "label": "Car",
+                        "value": "icon-car"
+                    },
+                    {
+                        "label": "Energy",
+                        "value": "icon-energy"
+                    }
+                ],
+                "default": "icon-shipping"
+            },
+            {
+                "type": "header",
+                "content": "-----OR-----"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Select Icon"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Icon"
+            }
+        ]
+    }
+{% endschema %}

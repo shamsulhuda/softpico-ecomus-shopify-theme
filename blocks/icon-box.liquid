@@ -1,0 +1,43 @@
+<div class="swiper-slide-inner">
+    <div class="tf-icon-box style-border-line text-center">
+        {% content_for 'blocks' %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Icon text box",
+    "class": "swiper-slide",
+    "settings": [
+        
+    ],
+    "blocks": [
+        {
+            "type": "icon"
+        },
+        {
+            "type": "content"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Icon text box",
+            "blocks": [
+                {
+                    "type": "icon",
+                    "settings": {
+                        "icon": "icon-shipping"
+                    }
+                },
+                {
+                    "type": "content",
+                    "settings": {
+                        "title": "Free Shipping",
+                        "rte": "<p>Free shipping over order $120</p>"
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

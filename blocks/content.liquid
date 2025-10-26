@@ -1,0 +1,29 @@
+<div class="content">
+    <div class="title">{{ block.settings.title }}</div>
+    {{ block.settings.rte }}
+</div>
+
+{% schema %}
+    {
+        "name": "Content",
+        "settings": [
+            {
+                "type": "inline_richtext",
+                "id": "title",
+                "label": "Title",
+                "default": "14 Day Returns"
+            },
+            {
+                "type": "richtext",
+                "id": "rte",
+                "label": "Text",
+                "default": "<p>Within 30 days for an exchange</p>"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Content"
+            }
+        ]
+    }
+{% endschema %}

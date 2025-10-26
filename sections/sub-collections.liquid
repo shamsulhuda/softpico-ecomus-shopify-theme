@@ -1,0 +1,145 @@
+<!-- categories -->
+<section class="flat-spacing-20">
+    <div class="container">
+        <div class="tf-categories-wrap">
+            <div class="tf-categories-container">
+                {% for block in section.blocks %}
+                    {% assign collection = block.settings.collection %}
+                <div class="collection-item-circle hover-img">
+                    <div class="has-saleoff-wrap position-relative">
+                        {% if collection.featured_image %}
+                        <a href="{{ collection.url }}" class="collection-image img-style">
+                            {{ collection.featured_image |  image_url: width: 400 |  image_tag: sizes: "150,200,300,400", class: 'lazyload', alt: collection.title }}
+                        </a>
+                        {% elsif block.settings.image %}
+                            <a href="{{ collection.url }}" class="collection-image img-style">
+                            {{ block.settings.image |  image_url: width: 400 |  image_tag: sizes: "150,200,300,400", class: 'lazyload', alt: collection.title }}
+                            </a>
+                        {% else %}
+                        <a href="#" class="collection-image img-style">
+                            {{ 'collection-apparel-1' |  placeholder_svg_tag }}
+                        </a>
+                        {% endif %}
+                        {% if block.settings.on_sale %}
+                        <div class="sale-off fw-5">30% off</div>
+                        {% endif %}
+                    </div>
+                    <div class="collection-content text-center">
+                        {% if collection != blank %}
+                            {% if block.settings.label != blank %}
+                            <a href="{% if block.settings.url != blank %}{{- block.settings.url  -}}{% else %}{{- collection.url -}}{% endif %}" class="link title fw-6">{{ block.settings.label }}</a>
+                            {% else %}
+                            <a href="{% if block.settings.url != blank %}{{- block.settings.url  -}}{% else %}{{- collection.url -}}{% endif %}" class="link title fw-6">{{ collection.title }}</a>
+                            {% endif %}
+                        {% else %}
+                        <a href="#" class="link title fw-6">Collection-{{ forloop.index }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if section.settings.label != blank %}
+            <div class="tf-shopall-wrap">
+                <div class="collection-item-circle tf-shopall">
+                    <a href="{{ section.settings.url | default: '#' }}" class="collection-image img-style tf-shopall-icon">
+                        <i class="icon icon-arrow1-top-left"></i>
+                    </a>
+                    <div class="collection-content text-center">
+                        <a href="{{ section.settings.url | default: '#' }}" class="link title fw-6">{{ section.settings.label }}</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<!-- /categories -->
+
+{% schema %}
+    {
+        "name": "Sub collections",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Custom link"
+            },
+            {
+                "type": "text",
+                "id": "label",
+                "label": "Label",
+                "default": "Shoip all"
+            },
+            {
+                "type": "url",
+                "id": "url",
+                "label": "Url"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "collection",
+                "name": "Collection",
+                "settings": [
+                    {
+                        "type": "collection",
+                        "id": "collection",
+                        "label": "Collection"
+                    },
+                    {
+                        "type": "checkbox",
+                        "id": "on_sale",
+                        "label": "Items on sale",
+                        "default": false
+                    },
+                    {
+                        "type": "header",
+                        "content": "Custom data"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Image"
+                    },
+                    {
+                        "type": "url",
+                        "label": "Url",
+                        "id": "url"
+                    },
+                    {
+                        "type": "text",
+                        "id": "label",
+                        "label": "Label"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Sub collection",
+                "blocks": [
+                    {
+                        "type": "collection"
+                    },
+                    {
+                        "type": "collection"
+                    },
+                    {
+                        "type": "collection"
+                    },
+                    {
+                        "type": "collection"
+                    },
+                    {
+                        "type": "collection"
+                    },
+                    {
+                        "type": "collection"
+                    },
+                    {
+                        "type": "collection"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
