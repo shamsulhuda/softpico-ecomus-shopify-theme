@@ -49,11 +49,11 @@
     {{ 'styles.css' |  asset_url |  stylesheet_tag }}
 
      <!-- Javascript -->
-    <script src="{{'bootstrap.min.js' |  asset_url}}" defer></script>
-    <script src="{{'jquery.min.js' |  asset_url }}" defer></script>
-    <script src="{{'swiper-bundle.min.js' |  asset_url}}" defer></script>
-    <script src="{{'carousel.js' |  asset_url}}" defer></script>
-    <script src="{{'bootstrap-select.min.js' |  asset_url}}" defer></script>
+    <script src="{{'bootstrap.min.js' | asset_url}}" defer></script>
+    <script src="{{'jquery.min.js' | asset_url }}" defer></script>
+    <script src="{{'swiper-bundle.min.js' | asset_url}}" defer></script>
+    <script src="{{'carousel.js' | asset_url}}" defer></script>
+    <script src="{{'bootstrap-select.min.js' | asset_url}}" defer></script>
     <script src="{{'lazysize.min.js' |  asset_url}}" defer></script>
     <script src="{{'bootstrap-select.min.js' |  asset_url}}" defer></script>
     <script src="{{'count-down.js' |  asset_url}}" defer></script>
@@ -125,6 +125,7 @@
     </div>
 
     <div id="wrapper">
+      {% sections 'aside-group' %}
       {% sections 'header-group' %}
       <main>
         {{ content_for_layout }}

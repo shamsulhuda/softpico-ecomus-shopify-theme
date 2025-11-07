@@ -1,0 +1,27 @@
+<div class="tf-product-info-liveview">
+    {% assign min = 1 %}
+    {% assign max = 50 %}
+    {% assign diff = max | minus: min %}
+    {% assign random = "now" | date: "%N" | modulo: diff | plus: min %}
+    <div class="liveview-count">{{ random }}</div>
+    <p class="fw-6">{{ block.settings.text }}</p>
+</div>
+
+{% schema %}
+{
+    "name": "Product visitor",
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "People are viewing this right now"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product visitor"
+        }
+    ]
+}
+{% endschema %}

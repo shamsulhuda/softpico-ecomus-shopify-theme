@@ -6038,6 +6038,13 @@ header.header-bg {
 .tf-product-modal .tf-social-icon .box-icon.social-pinterest {
   background: var(--pinterest-cl);
 }
+.tf-product-modal .tf-social-icon .box-icon.social-linkedin {
+  background: #0A66C2;
+}
+.tf-product-modal .tf-social-icon .box-icon.social-whatsapp {
+  background: #25D366;
+}
+
 .tf-product-modal .form-share {
   margin-top: 20px;
   position: relative;

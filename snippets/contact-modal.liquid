@@ -1,0 +1,41 @@
+{%  comment  %} 
+id: Block id or any other id relevent with the action button
+title: 'string' (optional)
+{% endcomment %}
+<div class="modal modalCentered fade modalDemo tf-product-modal modal-part-content" id="ask_question-{{ id }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="header">
+                <div class="demo-title">{{ title |  default: 'Modal Heading' }}</div>
+                <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
+            </div>
+            <div class="overflow-y-auto">
+                {% form 'contact' %}
+                    {{ form.errors | default_errors }}
+                    <fieldset class="">
+                        <label for="">Name *</label>
+                        <input type="text" placeholder="" class="" name="contact[name]" tabindex="2" value="{{ customer.name }}"
+                            aria-required="true" required="">
+                    </fieldset>
+                    <fieldset class="">
+                        <label for="">Email *</label>
+                        <input type="email" placeholder="" class="" name="contact[email]" tabindex="2" value=""
+                            aria-required="true" required="">
+                    </fieldset>
+                    <fieldset class="">
+                        <label for="">Phone number</label>
+                        <input type="number" placeholder="" class="" name="contact[phone]" tabindex="2" value=""
+                            aria-required="true">
+                    </fieldset>
+                    <fieldset class="">
+                        <label for="">Message *</label>
+                        <textarea name="contact[body]" rows="4" placeholder="" class="" tabindex="2" aria-required="true"
+                            required=""></textarea>
+                    </fieldset>
+                    <button type="submit"
+                        class="tf-btn w-100 btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn"><span>Send</span></button>
+                {% endform %}
+            </div>
+        </div>
+    </div>
+</div>

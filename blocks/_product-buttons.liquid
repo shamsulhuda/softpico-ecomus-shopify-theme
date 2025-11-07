@@ -1,0 +1,36 @@
+<div class="tf-product-info-buy-button">
+    {% form 'product', product %}
+        <button type="submit"
+            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add
+                to cart -&nbsp;</span><span
+                class="tf-qty-price total-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+            </button>
+        <button type="button"
+            class="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action">
+            <span class="icon icon-heart"></span>
+            <span class="tooltip">Add to Wishlist</span>
+            <span class="icon icon-delete"></span>
+        </button>
+        <button type="button" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft"
+            class="tf-product-btn-wishlist hover-tooltip box-icon bg_white compare btn-icon-action">
+            <span class="icon icon-compare"></span>
+            <span class="tooltip">Add to Compare</span>
+            <span class="icon icon-check"></span>
+        </button>
+        <div class="w-100">
+            <a href="#" class="btns-full">Buy Now</a>
+        </div>
+    {% endform %}
+</div>
+
+{% schema %}
+    {
+        "name": "Buttons",
+        "settings":[],
+        "presets": [
+            {
+                "name": "Buttons"
+            }
+        ]
+    }
+{% endschema %}

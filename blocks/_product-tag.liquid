@@ -1,0 +1,49 @@
+{% assign custom_tags = block.settings.product_tags |  split: ', ' %}
+{% if custom_tags != blank %}
+{% assign my_tags = custom_tags |  join: ' '  %}
+
+<div class="tf-product-info-badges">
+    {% for tag in product.tags %}
+        {% if my_tags contains tag %}
+        <div class="badges">{{ tag }}</div>
+        {% break %}
+        {% endif %}
+    {% endfor %}
+    <div class="product-status-content">
+        <i class="icon-lightning"></i>
+        {% assign min = 1 %}
+        {% assign max = 100 %}
+        {% assign diff = max |  minus: min %}
+        {%  assign random = "now" | date: "%N" |  modulo: diff |  plus: min %}
+        {%  assign text = block.settings.text | replace:'{number}', random %}
+        <p class="fw-6">{{ text  }}</p>
+    </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Product Badge",
+    "settings": [
+        {
+            "type": "html",
+            "id": "product_tags",
+            "label": "Input prefered product tags",
+            "default": "Best Seller, Featured",
+            "info": "Input comma(,) separated values"
+        },
+        {
+            "type": "html",
+            "id": "text",
+            "label": "Text",
+            "default": "Selling fast! {number} people have this in their carts.",
+            "info": "Random number will show where you put {number}"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Badge"
+        }
+    ]
+}
+{% endschema %}

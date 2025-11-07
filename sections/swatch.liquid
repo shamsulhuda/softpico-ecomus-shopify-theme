@@ -1,0 +1,32 @@
+{% style %}
+    {% for block in section.blocks %}
+        [data-color="{{ block.settings.color_name | handleize }}"] .bg-color-{{ block.settings.color_name | handleize }} {
+            background: {{ block.settings.color }};
+        }
+    {% endfor %}
+{% endstyle %}
+{%  schema  %} 
+    {
+        "name": "Swatch",
+        "settings": [
+        ],
+        "blocks": [
+            {
+                "type": "swatch",
+                "name": "Swatch",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "color_name",
+                        "label": "Color name"
+                    },
+                    {
+                        "type": "color",
+                        "id": "color",
+                        "label": "Color"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

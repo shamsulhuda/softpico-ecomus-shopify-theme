@@ -1,0 +1,105 @@
+{% unless product.has_only_default_variant %}
+<variant-picker class="tf-product-info-variant-picker">
+    {% for product_option in product.options_with_values %}
+    <div class="variant-picker-item">
+        {% unless product_option.name == 'Size' %}
+        <div class="variant-picker-label">
+            {{ product_option.name | escape }}: <span
+                class="fw-6 variant-picker-label-value value-currentColor">{{ product_option.selected_value }}</span>
+        </div>
+        {% else %}
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="variant-picker-label">
+                {{ product_option.name | escape }}: <span class="fw-6 variant-picker-label-value">{{ product_option.selected_value }}</span>
+            </div>
+            <a href="#find_size" data-bs-toggle="modal" class="find-size fw-6">Find
+                your size</a>
+        </div>
+        {% endunless %}
+        <div class="variant-picker-values">
+            {% if block.settings.variant_style == 'buttons' %}
+            {% for product_option_value in product_option.values %}
+                {% if block.settings.show_swatches and product_option.name == 'Color' %}
+                <input 
+                    id="{{ section.id }}-{{ product_option.name }}-{{ forloop.index0 }}" 
+                    type="radio" 
+                    name="{{ product_option.name |  handleize }}" 
+                {% if product_option_value.selected %} checked{% endif %}
+                    data-option-value-id="{{ product_option_value.id }}"
+                    data-position="{{ product_option.position }}">
+                <label 
+                    class="hover-tooltip radius-60 color-btn" 
+                    for="{{ section.id }}-{{ product_option.name }}-{{ forloop.index0 }}"
+                    data-color="{{ product_option_value |  handleize }}" 
+                    data-value="{{ product_option_value }}">
+                    <span class="btn-checkbox bg-color-{{ product_option_value | handleize }}"></span>
+                    <span class="tooltip">{{ product_option_value }}</span>
+                </label>
+                {% else %}
+                <input 
+                    type="radio" 
+                    name="{{ product_option.name |  handleize }}" 
+                    id="{{ section.id }}-{{ product_option.name }}-{{ forloop.index0 }}" 
+                    {% if product_option_value.selected %}checked{% endif %}
+                    data-option-value-id="{{ product_option_value.id }}"
+                    data-position="{{ product_option.position }}">
+                <label 
+                    class="style-text size-btn" 
+                    for="{{ section.id }}-{{ product_option.name }}-{{ forloop.index0 }}" 
+                    data-value="{{ product_option_value }}">
+                    <p>{{ product_option_value }}</p>
+                </label>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <select class="tf-select">
+                {% for product_option_value in product_option.values %}
+                <option value="{{ product_option_value }}"{% if product_option_value.selected %} selected{% endif %}>{{ product_option_value }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    <select class="variant-select" name="id">
+        {% for variant in product.variants %}
+        <option value="{{ variant.id }}"{% if product.selected_or_first_available_variant.id == variant.id %} selected{% endif %}>{{ variant.title }}</option>
+        {% endfor %}
+    </select>
+</variant-picker>
+{% endunless %}
+
+{% schema %}
+{
+    "name": "Variants",
+    "settings": [
+        {
+            "type": "select",
+            "id": "variant_style",
+            "label": "Style",
+            "options": [
+                {
+                    "label": "Select",
+                    "value": "select"
+                },
+                {
+                    "label": "Buttons",
+                    "value": "buttons"
+                }
+            ],
+            "default": "buttons"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_swatches",
+            "label": "Swatch",
+            "default": true
+        }
+    ],
+    "presets": [
+        {
+            "name": "Variants"
+        }
+    ]
+}
+{% endschema %}

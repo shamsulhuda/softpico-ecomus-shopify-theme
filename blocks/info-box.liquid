@@ -1,0 +1,62 @@
+
+<div class="tf-product-delivery">
+    <div class="icon">
+        <i class="{{ block.settings.icon }}"></i>
+    </div>
+    {% if block.settings.text != blank %}
+        {{ block.settings.text }}
+    {% endif %}
+</div>
+
+
+{% schema %}
+    {
+        "name": "Info Box",
+        "class": "col-xl-6 col-12",
+        "settings": [
+            {
+                "type": "select",
+                "id": "icon",
+                "label": "Icon",
+                "options": [
+                    {
+                        "value": "icon-delivery-time",
+                        "label": "Delivery"
+                    },
+                    {
+                        "value": "icon-return-order",
+                        "label": "Return"
+                    },
+                    {
+                        "value": "icon-question",
+                        "label": "Question"
+                    },
+                    {
+                        "value": "icon-car",
+                        "label": "Truck"
+                    },
+                    {
+                        "value": "icon-share",
+                        "label": "Share"
+                    },
+                    {
+                        "value": "icon-compare",
+                        "label": "Compare"
+                    }
+                ],
+                "default": "icon-delivery-time"
+            },
+            {
+                "type": "richtext",
+                "id": "text",
+                "label": "Text",
+                "default": "<p>Estimate delivery times: <strong>12-26 days</strong> (International), <strong>3-6 days</strong> (United States).</p>"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Info Box"
+            }
+        ]
+    }
+{% endschema %}

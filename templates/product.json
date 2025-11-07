@@ -1,0 +1,104 @@
+{
+    "sections": {
+        "main-product": {
+            "type": "main-product",
+            "blocks": {
+                "title":{
+                    "type": "_product-title"
+                },
+                "price": {
+                    "type": "_product-price"
+                },
+                "visitors": {
+                    "type": "_product-visitors"
+                },
+                "countdown": {
+                    "type": "countdown"
+                },
+                "variants": {
+                    "type": "_product-variants"
+                },
+                "quantity": {
+                    "type": "_product-quantity"
+                },
+                "buttons": {
+                    "type": "_product-buttons"
+                },
+                "extra-info": {
+                    "type": "_product-extra-info",
+                    "blocks": {
+                        "ask-questions": {
+                            "type": "ask-questions",
+                            "settings":{
+                                "icon": "icon-question",
+                                "title": "Ask a question"
+                            }
+                        },
+                        "delivery-return": {
+                            "type": "delivery-return",
+                            "settings":{
+                                "icon": "icon-delivery-time",
+                                "title": "Delivery & Return"
+                            }
+                        },
+                        "social-share": {
+                            "type": "social-share",
+                            "settings":{
+                                "icon": "icon-share",
+                                "title": "Social Share"
+                            }
+                        }
+                    },
+                    "block_order":[
+                        "ask-questions",
+                        "delivery-return",
+                        "social-share"
+                    ]
+                },
+                "delivery-return": {
+                    "type": "_product-info-box",
+                    "settings": {},
+                    "blocks": {
+                        "info-box-1": {
+                            "type": "info-box",
+                            "settings": {
+                                "icon": "icon-delivery-time",
+                                "text": "<p>Estimate delivery times: <strong>12-26 days</strong> (International), <strong>3-6 days</strong> (United States).</p>"
+                            }
+                        },
+                        "info-box-2": {
+                            "type": "info-box",
+                            "settings": {
+                                "icon": "icon-return-order",
+                                "text": "<p>Return within <strong>30 days</strong> of purchase. Duties & taxes are non-refundable.</p>"
+                            }
+                        }
+                    },
+                    "block_order": [
+                        "info-box-1",
+                        "info-box-2"
+                    ]
+                },
+                "guarantee": {
+                    "type": "_product-guarantee"
+                },
+            },
+            "block_order": [
+                "title",
+                "price",
+                "visitors",
+                "countdown",
+                "variants",
+                "quantity",
+                "buttons",
+                "extra-info",
+                "delivery-return",
+                "guarantee"
+            ],
+            "settings": {}
+        }
+    },
+    "order": [
+        "main-product"
+    ]
+}

@@ -1,0 +1,87 @@
+<div class="modal modalCentered fade modalDemo tf-product-modal modal-part-content" id="share_social-{{ id }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="header">
+                <div class="demo-title">{{ title | default: 'Share' }}</div>
+                <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
+            </div>
+            <div class="overflow-y-auto">
+                {%- assign share_url = canonical_url | url_encode -%}
+                {%- assign share_text = "Check this out" | url_encode -%}
+                
+                <ul class="tf-social-icon d-flex gap-10">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" class="box-icon social-facebook bg_line" target="_blank">
+                        <i class="icon icon-fb"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/intent/tweet?text={{ share_text }}&url={{ share_url }}" class="box-icon social-twiter bg_line" target="_blank">
+                        <i class="icon icon-Icon-x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if product.featured_image -%}&media={{ product.featured_image | img_url:'1200x' | url_encode }}{%- endif -%}&description={{ share_text }}" class="box-icon social-pinterest bg_line" target="_blank">
+                        <i class="icon icon-pinterest-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" class="box-icon social-linkedin bg_line" target="_blank" rel="noopener noreferrer">in</a>
+                    </li>
+                    <li>
+                        <a href="https://api.whatsapp.com/send?text={{ share_text }}%20{{ share_url }}" class="box-icon social-whatsapp bg_line" target="_blank" rel="noopener noreferrer"><i class="icon-whatsapp"></i></a>
+                    </li>
+                </ul>
+                <div class="form-share" method="post" accept-charset="utf-8">
+                    <fieldset>
+                        <input type="text" value="{{- request.origin |  append: request.path -}}" tabindex="0"
+                            aria-required="true">
+                    </fieldset>
+                    <div class="button-submit">
+                        <button class="tf-btn btn-sm radius-3 btn-fill btn-icon animate-hover-btn"
+                            type="button">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const selector = document.querySelector('.form-share');
+  if (!selector) return;
+
+  const input = selector.querySelector('input[type="text"]');
+  const btn   = selector.querySelector('button[type="button"], button');
+  if (!input || !btn) return;
+
+  const originalHTML = btn.innerHTML;
+
+  btn.addEventListener('click', async () => {
+    const textToCopy = (input.value || '').trim();
+    if (!textToCopy) return;
+
+    btn.disabled = true;
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(textToCopy);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.select();
+        document.execCommand('copy');
+      }
+
+      btn.innerHTML = 'Copied';
+    } catch (err) {
+      console.error('Copy failed:', err);
+      btn.innerHTML = 'Failed';
+    }
+
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }, 3000);
+  });
+});
+</script>

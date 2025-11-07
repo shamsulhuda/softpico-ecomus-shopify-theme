@@ -1,0 +1,26 @@
+<div class="tf-product-info-price">
+    {%  if product.compare_at_price > product.price %}
+    <div class="price-on-sale">{{ product.price | money_with_currency }}</div>
+    <div class="compare-at-price">{{ product.compare_at_price | money }}</div>
+    {% comment %} Calculate Discount Percentage {% endcomment %}
+    {% assign item = product.first_available_variant %}
+    {% assign save = item.compare_at_price | minus: item.price %}
+    {% assign percent = save | times: 100 | divided_by: item.compare_at_price %}
+    {% assign save_percent = percent | round %}
+    <div class="badges-on-sale"><span>{{ save_percent }}</span>% OFF</div>
+    {%  else %}
+    <div class="price-on-sale">{{  product.first_available_variant.price | money_with_currency }}</div>
+    {%  endif %}
+</div>
+
+{% schema %}
+{
+    "name": "Product price",
+    "settings": [],
+    "presets": [
+        {
+            "name": "Product price"
+        }
+    ]
+}
+{% endschema %}

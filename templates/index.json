@@ -9,6 +9,37 @@
  */
 {
   "sections": {
+    "sub-collection": {
+      "type": "sub-collections",
+      "blocks": {
+        "block-0":{
+          "type": "collection"
+        },
+        "block-1":{
+          "type": "collection"
+        },
+        "block-2":{
+          "type": "collection"
+        },
+        "block-3":{
+          "type": "collection"
+        },
+        "block-4":{
+          "type": "collection"
+        },
+        "block-5":{
+          "type": "collection"
+        }
+      },
+      "block_order": [
+        "block-0",
+        "block-1",
+        "block-2",
+        "block-3",
+        "block-4",
+        "block-5",
+      ]
+    },
     "slider_banner": {
       "type": "slideshow",
       "blocks": {
@@ -157,13 +188,99 @@
         "block-2"
       ],
       "settings": {}
+    },
+    "icon-box":{
+      "type": "icon-box",
+      "blocks": {
+        "block-0":{
+          "type": "icon-box",
+          "settings": {},
+          "blocks": {
+            "icon": {
+              "type": "icon"
+            },
+            "content": {
+              "type": "content"
+            }
+          },
+          "block_order": [
+            "icon",
+            "content"
+          ]
+        },
+        "block-1":{
+          "type": "icon-box",
+          "settings": {},
+          "blocks": {
+            "icon": {
+              "type": "icon",
+              "settings": {
+                "icon": "icon-payment fs-22"
+              }
+            },
+            "content": {
+              "type": "content"
+            }
+          },
+          "block_order": [
+            "icon",
+            "content"
+          ]
+        },
+        "block-2":{
+          "type": "icon-box",
+          "settings": {},
+          "blocks": {
+            "icon": {
+              "type": "icon",
+              "settings": {
+                "icon": "icon-return fs-22"
+              }
+            },
+            "content": {
+              "type": "content"
+            }
+          },
+          "block_order": [
+            "icon",
+            "content"
+          ]
+        },
+        "block-3":{
+          "type": "icon-box",
+          "settings": {},
+          "blocks": {
+            "icon": {
+              "type": "icon",
+              "settings": {
+                "icon": "icon-suport"
+              }
+            },
+            "content": {
+              "type": "content"
+            }
+          },
+          "block_order": [
+            "icon",
+            "content"
+          ]
+        },
+      },
+      "block_order": [
+        "block-0",
+        "block-1",
+        "block-2",
+        "block-3"
+      ]
     }
   },
   "order": [
+    "sub-collection",
     "slider_banner",
     "categories",
     "banner-collection",
     "featured-collection",
-    "image-with-text"
+    "image-with-text",
+    "icon-box"
   ]
 }

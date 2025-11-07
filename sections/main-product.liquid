@@ -1,0 +1,160 @@
+
+{{ 'drift-basic.min.css' | asset_url | stylesheet_tag }}
+{{ 'photoswipe.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'drift.min.js' | asset_url }}" defer></script>
+<script src="{{ 'photoswipe-lightbox.umd.min.js' | asset_url }}" defer></script>
+<script src="{{ 'photoswipe.umd.min.js' | asset_url }}" defer></script>
+<script src="{{ 'zoom.js' | asset_url }}" defer></script>
+<script src="{{ 'variant-picker.js' | asset_url }}" defer></script>
+
+
+<!-- breadcrumb -->
+<div class="tf-breadcrumb">
+    <div class="container">
+        <div class="tf-breadcrumb-wrap d-flex justify-content-between flex-wrap align-items-center">
+            <div class="tf-breadcrumb-list">
+                <a href="index.html" class="text">Home</a>
+                <i class="icon icon-arrow-right"></i>
+                <a href="#" class="text">Women</a>
+                <i class="icon icon-arrow-right"></i>
+                <span class="text">Cotton jersey top</span>
+            </div>
+            <div class="tf-breadcrumb-prev-next">
+                <a href="#" class="tf-breadcrumb-prev hover-tooltip center">
+                    <i class="icon icon-arrow-left"></i>
+                    <!-- <span class="tooltip">Cotton jersey top</span> -->
+                </a>
+                <a href="#" class="tf-breadcrumb-back hover-tooltip center">
+                    <i class="icon icon-shop"></i>
+                    <!-- <span class="tooltip">Back to Women</span> -->
+                </a>
+                <a href="#" class="tf-breadcrumb-next hover-tooltip center">
+                    <i class="icon icon-arrow-right"></i>
+                    <!-- <span class="tooltip">Cotton jersey top</span> -->
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /breadcrumb -->
+<!-- default -->
+<product-info class="flat-spacing-4 pt_0" id="product" data-product-url="{{ product.url }}" data-section-id="{{ section.id }}">
+    <div class="tf-main-product section-image-zoom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    {%  assign media = product.media %}
+                    {% render 'media', media: media %}
+                </div>
+                <div class="col-md-6">
+                    <div class="tf-product-info-wrap position-relative">
+                        <div class="tf-zoom-main"></div>
+                        <div class="tf-product-info-list other-image-zoom">
+                            {% content_for 'blocks' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tf-sticky-btn-atc">
+        <div class="container">
+            <div class="tf-height-observer w-100 d-flex align-items-center">
+                <div class="tf-sticky-atc-product d-flex align-items-center">
+                    <div class="tf-sticky-atc-img">
+                        <img class="lazyloaded" data-src="images/shop/products/p-d1.png" alt=""
+                            src="images/shop/products/p-d1.png">
+                    </div>
+                    <div class="tf-sticky-atc-title fw-5 d-xl-block d-none">Cotton jersey top</div>
+                </div>
+                <div class="tf-sticky-atc-infos">
+                    <form class="">
+                        <div class="tf-sticky-atc-variant-price text-center">
+                            <select class="tf-select">
+                                <option selected="selected">Beige / S - $8.00</option>
+                                <option>Beige / M - $8.00</option>
+                                <option>Beige / L - $8.00</option>
+                                <option>Beige / XL - $8.00</option>
+                                <option>Black / S - $8.00</option>
+                                <option>Black / M - $8.00</option>
+                                <option>Black / L - $8.00</option>
+                                <option>Black / XL - $8.00</option>
+                                <option>Blue / S - $8.00</option>
+                                <option>Blue / M - $8.00</option>
+                                <option>Blue / L - $8.00</option>
+                                <option>Blue / XL - $8.00</option>
+                                <option>White / S - $8.00</option>
+                                <option>White / M - $8.00</option>
+                                <option>White / L - $8.00</option>
+                                <option>White / XL - $8.00</option>
+                            </select>
+                        </div>
+                        <div class="tf-sticky-atc-btns">
+                            <div class="tf-product-info-quantity">
+                                <div class="wg-quantity">
+                                    <span class="btn-quantity minus-btn">-</span>
+                                    <input type="text" name="number" value="1">
+                                    <span class="btn-quantity plus-btn">+</span>
+                                </div>
+                            </div>
+                            <a href="#" class="tf-btn btn-fill radius-3 justify-content-center fw-6 fs-14 flex-grow-1 animate-hover-btn btn-add-to-cart">
+                                <span>Add to cart</span>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</product-info>
+<!-- /default -->
+{% schema %}
+    {
+        "name": "Main product",
+        "class": "main-product",
+        "settings": [
+        ],
+        "blocks":[
+            {
+                "type": "@app"
+            },
+            {
+                "type": "@theme"
+            },
+            {
+                "type": "_product-title"
+            },
+            {
+                "type": "_product-tag"
+            },
+            {
+                "type": "_product-price"
+            },
+            {
+                "type": "_product-visitors"
+            },
+            {
+                "type": "countdown"
+            },
+            {
+                "type": "_product-variants"
+            },
+            {
+                "type": "_product-quantity"
+            },
+            {
+                "type": "_product-buttons"
+            },
+            {
+                "type": "_product-extra-info"
+            },
+            {
+                "type": "_product-info-box"
+            },
+            {
+                "type": "_product-guarantee"
+            }
+        ]
+    }
+{% endschema %}

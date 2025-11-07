@@ -1,0 +1,53 @@
+<a href="#share_social-{{ block.id }}" data-bs-toggle="modal" class="tf-product-extra-icon">
+    <div class="icon">
+        <i class="{{ block.settings.icon }}"></i>
+    </div>
+    <div class="text fw-6">{{ block.settings.title }}</div>
+</a>
+{% render 'share-modal', id: block.id, title: block.settings.title %}
+{% schema %}
+    {
+        "name": "Social Share",
+        "settings": [
+            {
+                "type": "select",
+                "id": "icon",
+                "label": "Icon",
+                "options": [
+                    {
+                        "value": "icon-question",
+                        "label": "Question"
+                    },
+                    {
+                        "value": "icon-car",
+                        "label": "Truck"
+                    },
+                    {
+                        "value": "icon-share",
+                        "label": "Share"
+                    },
+                    {
+                        "value": "icon-compare",
+                        "label": "Compare"
+                    },
+                    {
+                        "value": "icon-delivery-time",
+                        "label": "Delivery"
+                    }
+                ],
+                "default": "icon-share"
+            },
+            {
+                "type": "inline_richtext",
+                "id": "title",
+                "label": "Title",
+                "default": "Social Share"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Social Share"
+            }
+        ]
+    }
+{% endschema %}

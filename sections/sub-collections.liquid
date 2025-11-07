@@ -1,5 +1,18 @@
-<!-- categories -->
-<section class="flat-spacing-20">
+<!-- sections/sub-collections.liquid -->
+{% style %}
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top |  append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+    }
+
+    @media screen and (max-width: 750px){
+        .padding-{{ section.id }}{
+            padding-top: {{ section.settings.padding_top | append: 'px' }};
+            padding-bottom: {{ section.settings.padding_bottom | append: 'px' }};
+        }
+    }
+ {% endstyle %}
+<section class="padding-{{ section.id }} color-{{ section.settings.color_schema }}">
     <div class="container">
         <div class="tf-categories-wrap">
             <div class="tf-categories-container">
@@ -60,6 +73,12 @@
         "name": "Sub collections",
         "settings": [
             {
+                "type": "color_scheme",
+                "id": "color",
+                "label": "Color",
+                "default": "scheme-1"
+            },
+            {
                 "type": "header",
                 "content": "Custom link"
             },
@@ -73,6 +92,30 @@
                 "type": "url",
                 "id": "url",
                 "label": "Url"
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
             }
         ],
         "blocks": [

@@ -1,0 +1,61 @@
+<a href="#delivery_return-{{ block.id }}" data-bs-toggle="modal" class="tf-product-extra-icon">
+    <div class="icon">
+        <i class="{{ block.settings.icon }}"></i>
+    </div>
+    <div class="text fw-6">{{ block.settings.title }}</div>
+</a>
+{% if block.settings.content != blank %}
+{% render 'content-modal', id: block.id, title: block.settings.title, page: block.settings.content %}
+{% endif %}
+
+{% schema %}
+    {
+        "name": "Delivery & Return",
+        "settings": [
+            {
+                "type": "select",
+                "id": "icon",
+                "label": "Icon",
+                "options": [
+                    {
+                        "value": "icon-question",
+                        "label": "Question"
+                    },
+                    {
+                        "value": "icon-car",
+                        "label": "Truck"
+                    },
+                    {
+                        "value": "icon-share",
+                        "label": "Share"
+                    },
+                    {
+                        "value": "icon-compare",
+                        "label": "Compare"
+                    },
+                    {
+                        "value": "icon-delivery-time",
+                        "label": "Delivery"
+                    }
+                ],
+                "default": "icon-delivery-time"
+            },
+            {
+                "type": "inline_richtext",
+                "id": "title",
+                "label": "Title",
+                "default": "Delivery & Return"
+            },
+            {
+                "type": "page",
+                "id": "content",
+                "label": "Content"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Delivery & Return"
+            }
+        ]
+    }
+{% endschema %}

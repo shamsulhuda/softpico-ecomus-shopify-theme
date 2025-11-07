@@ -1,0 +1,12 @@
+{
+    "name": "Aside Group",
+    "type": "aside",
+    "sections": {
+        "swatch": {
+            "type": "swatch"
+        }
+    },
+    "order": [
+        "swatch"
+    ]
+}

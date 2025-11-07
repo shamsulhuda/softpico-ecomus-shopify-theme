@@ -1,0 +1,40 @@
+<div class="tf-product-media-wrap sticky-top">
+    <div class="thumbs-slider">
+        <div dir="ltr" class="swiper tf-product-media-thumbs other-image-zoom"
+            data-direction="vertical">
+            <div class="swiper-wrapper stagger-wrap">
+                {% for media in media %}
+                    {% case media.media_type %}
+                        {% when 'image' %}
+                        <div class="swiper-slide stagger-item" data-color="beige">
+                            <div class="item">
+                                {{ media |  image_url: width: 300 |  image_tag: sizes: '100,200,300', class:'lazyload', alt: media.alt }}
+                            </div>
+                        </div>
+                        {% when 'video' %}
+                    {% endcase %}
+                {% endfor %}
+            </div>
+        </div>
+        <div dir="ltr" class="swiper tf-product-media-main" id="gallery-swiper-started">
+            <div class="swiper-wrapper">
+                <!-- beige -->
+                {% for media in media %}
+                    {% case media.media_type %}
+                        {% when 'image' %}
+                        {% assign image_link = media | image_url: width: 1920 %}
+                        <div class="swiper-slide" data-color="beige">
+                            <a href="{{ image_link }}" target="_blank" class="item"
+                                data-pswp-width="770px" data-pswp-height="1075px">
+                                {{ media |  image_url: width: 1000 |  image_tag: sizes: '100,200,300', class:'tf-image-zoom lazyload', data-zoom: image_link, alt: media.alt }}
+                            </a>
+                        </div>
+                        {% when 'video' %}
+                    {% endcase %}
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next button-style-arrow thumbs-next"></div>
+            <div class="swiper-button-prev button-style-arrow thumbs-prev"></div>
+        </div>
+    </div>
+</div>

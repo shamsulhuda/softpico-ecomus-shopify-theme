@@ -1,0 +1,18 @@
+{%  comment  %}
+    id: Block Id or any Id associated with action button
+    title: 'String', Modal heading
+    page: Page content
+{% endcomment %}
+<div class="modal modalCentered fade modalDemo tf-product-modal modal-part-content" id="delivery_return-{{ id }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="header">
+                <div class="demo-title">{{ title |  default: page.title }}</div>
+                <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
+            </div>
+            <div class="overflow-y-auto">
+                {{ page.content }}
+            </div>
+        </div>
+    </div>
+</div>

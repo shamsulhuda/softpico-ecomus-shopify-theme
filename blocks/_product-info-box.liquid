@@ -1,0 +1,37 @@
+<div class="tf-product-info-delivery-return">
+    <div class="row">
+        {% content_for 'blocks' %}
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Icon with text box",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "info-box"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Icon with text box",
+            "blocks": [
+                {
+                    "type": "info-box",
+                    "settings": {
+                        "icon": "icon-delivery-time",
+                        "text": "<p>Estimate delivery times: <strong>12-26 days</strong> (International), <strong>3-6 days</strong> (United States).</p>"
+                    }
+                },
+                {
+                    "type": "info-box",
+                    "settings": {
+                        "icon": "icon-return-order",
+                        "text": "<p>Return within <strong>30 days</strong> of purchase. Duties & taxes are non-refundable.</p>"
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

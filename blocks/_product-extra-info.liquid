@@ -1,0 +1,37 @@
+<div class="tf-product-info-extra-link">
+    {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+    "name": "Extra info",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "ask-questions"
+        },
+        {
+            "type": "delivery-return"
+        },
+        {
+            "type": "social-share"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Extra info",
+            "blocks": [
+                {
+                    "type": "ask-questions"
+                },
+                {
+                    "type": "delivery-return"
+                },
+                {
+                    "type": "social-share"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

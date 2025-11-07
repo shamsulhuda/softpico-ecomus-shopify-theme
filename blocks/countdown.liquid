@@ -1,0 +1,48 @@
+<div class="tf-product-info-countdown">
+    <div class="countdown-wrap">
+        <div class="countdown-title">
+            <i class="icon-time tf-ani-tada"></i>
+            <p>{{ block.settings.text }}</p>
+        </div>
+        {% assign ending = block.settings.end_date %}
+
+        {% assign start_seconds = "now" | date: "%s" %}
+        {% assign end_seconds = ending | date: "%s" %}
+
+        {% assign diff_seconds = end_seconds |  minus: start_seconds %}
+        {% if diff_seconds < 0 %}
+            {% assign diff_seconds = 0 %}
+        {% endif %}
+        <div class="tf-countdown style-1">
+            <div class="js-countdown" data-timer="{{ diff_seconds }}"
+                data-labels="Days :,Hours :,Mins :,Secs"></div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Countdown",
+    "settings": [
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+            "default": "HURRY UP! SALE ENDS IN:"
+        },
+        {
+            "type": "text",
+            "id": "end_date",
+            "label": "Ending date",
+            "default": "2025-11-10",
+            "placeholder": "YY-MM-DD",
+            "info": "YY-MM-DD"
+        },
+    ],
+    "presets": [
+        {
+            "name": "Countdown"
+        }
+    ]
+}
+{% endschema %}
