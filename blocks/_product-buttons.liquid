@@ -1,10 +1,23 @@
 <div class="tf-product-info-buy-button">
+    {%  liquid 
+        assign atc_price = product.selected_or_first_available_variant.price | money
+        assign atc_button_disabled = false
+        unless product.selected_or_first_available_variant.available
+        assign atc_button_disabled = true
+        endunless
+    %}
     {% form 'product', product %}
+        {% unless atc_button_disabled %}
         <button type="submit"
-            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add
-                to cart -&nbsp;</span><span
-                class="tf-qty-price total-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart">
+            Add To Cart - {{ atc_price }}
+        </button>
+        {% else %}
+            <button type="button"
+            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn disabled" disabled>
+            Sold Out
             </button>
+        {% endunless %}
         <button type="button"
             class="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action">
             <span class="icon icon-heart"></span>
@@ -17,16 +30,25 @@
             <span class="tooltip">Add to Compare</span>
             <span class="icon icon-check"></span>
         </button>
+        {% if block.settings.enable_dynamic_checkout %}
         <div class="w-100">
-            <a href="#" class="btns-full">Buy Now</a>
+            {{ form | payment_button }}
         </div>
+        {% endif %}
     {% endform %}
 </div>
 
 {% schema %}
     {
         "name": "Buttons",
-        "settings":[],
+        "settings":[
+            {
+                "type": "checkbox",
+                "id": "enable_dynamic_checkout",
+                "label": "Dynamic Checkout",
+                "default": false
+            }
+        ],
         "presets": [
             {
                 "name": "Buttons"

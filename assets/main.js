@@ -337,22 +337,22 @@
   /* variant picker
   -------------------------------------------------------------------------*/
   var variantPicker = function () {
-    if ($(".variant-picker-item").length) {
-      $(".variant-picker-item label").on("click", function (e) {
-        $(this)
-          .closest(".variant-picker-item")
-          .find(".variant-picker-label-value")
-          .text($(this).data("value"));
-      });
-    }
-    if ($(".variant-picker-item").length) {
-      $(".select-size").on("click", function (e) {
-        $(this)
-          .closest(".variant-picker-item")
-          .find(".variant-picker-label-value")
-          .text($(this).data("value"));
-      });
-    }
+    // if ($(".variant-picker-item").length) {
+    //   $(".variant-picker-item label").on("click", function (e) {
+    //     $(this)
+    //       .closest(".variant-picker-item")
+    //       .find(".variant-picker-label-value")
+    //       .text($(this).data("value"));
+    //   });
+    // }
+    // if ($(".variant-picker-item").length) {
+    //   $(".select-size").on("click", function (e) {
+    //     $(this)
+    //       .closest(".variant-picker-item")
+    //       .find(".variant-picker-label-value")
+    //       .text($(this).data("value"));
+    //   });
+    // }
   };
 
 
@@ -557,25 +557,25 @@
     // quantityInput.on("keydown keypress input", function(event) {
     //   event.preventDefault();
     // });
-    $(".color-btn, .size-btn").on("click", function () {
-      var newPrice = parseFloat($(this).data("price")) || basePrice;
-      quantityInput.val(1);
-      $(".price-on-sale").text("$" + newPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-      var totalPrice = newPrice;
-      $(".total-price").text("$" + totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-    });
+    // $(".color-btn, .size-btn").on("click", function () {
+    //   var newPrice = parseFloat($(this).data("price")) || basePrice;
+    //   quantityInput.val(1);
+    //   $(".price-on-sale").text("$" + newPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    //   var totalPrice = newPrice;
+    //   $(".total-price").text("$" + totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    // });
 
     $(".btn-increase").on("click", function () {
       var currentQuantity = parseInt(quantityInput.val());
       quantityInput.val(currentQuantity + 1);
-      updateTotalPrice();
+      // updateTotalPrice();
     });
 
     $(".btn-decrease").on("click", function () {
       var currentQuantity = parseInt(quantityInput.val());
       if (currentQuantity > 1) {
         quantityInput.val(currentQuantity - 1);
-        updateTotalPrice();
+        // updateTotalPrice();
       }
     });
 
@@ -908,20 +908,20 @@ var totalVariant = function () {
       productItem.find(".tf-variant-item-price .price").text(
         "$" + newPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       );
-      updateTotalPrice(newPrice, productItem);
+      // updateTotalPrice(newPrice, productItem);
     });
 
     productItem.find(".btnincrease").on("click", function () {
       var currentQuantity = parseInt(quantityInput.val());
       quantityInput.val(currentQuantity + 1);
-      updateTotalPrice(null, productItem);
+      // updateTotalPrice(null, productItem);
     });
 
     productItem.find(".btndecrease").on("click", function () {
       var currentQuantity = parseInt(quantityInput.val());
       if (currentQuantity > 1) {
         quantityInput.val(currentQuantity - 1);
-        updateTotalPrice(null, productItem);
+        // updateTotalPrice(null, productItem);
       }
     });
 

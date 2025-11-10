@@ -8855,8 +8855,8 @@ header.header-bg {
   width: 15px;
   height: 15px;
 }
-.variant-picker-item .color-btn.active {
-  border-color: var(--main) !important;
+.variant-picker-item .variant-picker-values input:checked + label.color-btn {
+  border-color: rgba(var(--color-foreground)) !important;
   box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.1019607843);
 }
 .variant-picker-item .color-btn.style-text.active {
