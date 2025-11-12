@@ -66,8 +66,10 @@ class VariantPicker extends HTMLElement {
         const newVariantPicker = html.querySelector('variant-picker');
         const variantPrice = html.querySelector('.tf-product-info-price');
         const stickyAtc = html.querySelector('.tf-sticky-atc-variant-price select');
+        const variantId = html.querySelector('select[name="id"]').value;
 
         const atcButton = html.querySelector('.tf-product-info-buy-button');
+        const variantImage = html.querySelector('input#variant-image-store');
 
         if(newVariantPicker) {
           this.innerHTML = newVariantPicker.innerHTML;
@@ -80,7 +82,9 @@ class VariantPicker extends HTMLElement {
 
         this._updatePrice(variantPrice);
         this._updateAtc(stickyAtc);
+        this._updateUrlVariant(variantId);
         this._updateAtcButton(atcButton);
+        this._updateVariantImage(variantImage);
 
       } catch (error){
         console.error('Variant picker fetch error: ', error);
@@ -102,10 +106,52 @@ class VariantPicker extends HTMLElement {
       }
     }
 
+    _updateUrlVariant(variantId) {
+      try {
+        if (!variantId) return;
+
+        // Normalize base URL to an absolute URL relative to current origin
+        let absoluteUrl = new URL(window.location.href);
+
+        // Keep existing params (if baseProductUrl included some) and set/replace variant
+        const params = new URLSearchParams(absoluteUrl.search);
+        params.set('variant', String(variantId));
+        // If absoluteUrl contains origin same as current origin, use pathname + search only (keeps host unchanged)
+        const newUrl = absoluteUrl.pathname + (params.toString() ? `?${params.toString()}` : '');
+
+        // Replace history
+        window.history.replaceState({}, '', newUrl);
+      } catch (err) {
+        console.warn('Failed to update URL variant param', err);
+      }
+    }
+
     _updateAtcButton(atcElement) {
       if(atcElement){
         const atcButton = document.querySelector('.tf-product-info-buy-button');
         if(atcButton) atcButton.innerHTML = atcElement.innerHTML;
+      }
+    }
+
+    _updateVariantImage(variantImage){
+      if(variantImage){
+        const slideImg = variantImage.value;
+        const slideZomming = variantImage.dataset.zoom;
+        const slideThumb = variantImage.dataset.thumbs;
+        const thumb = document.querySelector('.swiper-slide.swiper-slide-thumb-active img');
+        const mainSlideImg = document.querySelector('#gallery-swiper-started .swiper-slide.swiper-slide-active img');
+        const mainSlideHref = document.querySelector('#gallery-swiper-started .swiper-slide.swiper-slide-active a');
+        if(slideThumb && thumb != null){
+          console.log({slideThumb});
+          thumb.srcset = slideThumb;
+          thumb.src = slideThumb;
+        }
+        if(mainSlideImg && slideImg){
+          mainSlideImg.srcset = slideImg;
+          mainSlideImg.src = slideImg;
+          mainSlideImg.dataset.zoom = slideZomming;
+          mainSlideHref.href = slideZomming;
+        }
       }
     }
 }

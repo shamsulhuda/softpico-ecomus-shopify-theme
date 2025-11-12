@@ -1,6 +1,14 @@
 {% unless product.has_only_default_variant %}
 <variant-picker class="tf-product-info-variant-picker">
     {% for product_option in product.options_with_values %}
+        {% if product_option.selected_value.variant.image and forloop.first %}
+        <input type="hidden" 
+        id="variant-image-store" 
+        value="{{ product_option.selected_value.variant.image |  image_url: width: 1000  }}"
+        data-thumbs="{{ product_option.selected_value.variant.image |  image_url: width: 300 }}"
+        data-zoom="{{ product_option.selected_value.variant.image |  image_url: width: 1920  }}"
+        >
+        {% endif %}
     <div class="variant-picker-item">
         {% unless product_option.name == 'Size' %}
         <div class="variant-picker-label">
@@ -63,7 +71,7 @@
         </div>
     </div>
     {% endfor %}
-    <select class="variant-select" name="id">
+    <select class="variant-select d-none" name="id">
         {% for variant in product.variants %}
         <option value="{{ variant.id }}"{% if product.selected_or_first_available_variant.id == variant.id %} selected{% endif %}>{{ variant.title }}</option>
         {% endfor %}
