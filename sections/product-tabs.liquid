@@ -1,0 +1,140 @@
+<!-- tabs -->
+ {% style %}
+.padding-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top |  append: 'px' }};
+    padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+}
+
+@media screen and (max-width: 750px){
+    .padding-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+    }
+}
+{% endstyle %}
+<section class="flat-spacing-17 padding-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="widget-tabs style-has-border">
+                    <ul class="widget-menu-tab">
+                        {% for block in section.blocks %}
+                        <li class="item-title{% if forloop.first %} active{% endif %}">
+                            <span class="inner">{{ block.settings.tab_title |  default: 'Tab title'}}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="widget-content-tab">
+                        {% for block in section.blocks %}
+                        <div class="widget-content-inner{% if forloop.first %} active{% endif %}">
+                            {{ block.settings.tab_rte_content }}
+                            {{ block.settings.tab_page_content.content }}
+                            {{ block.settings.liquid }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /tabs -->
+
+{% schema %}
+    {
+        "name": "Product tabs",
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color_scheme",
+                "label": "Color scheme",
+                "default": "scheme-1"
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Tabs Content",
+                "type": "block_content",
+                "settings": [
+                    {
+                        "type": "inline_richtext",
+                        "id": "tab_title",
+                        "label": "Tab title",
+                        "default": "Description"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "tab_rte_content",
+                        "label": "Tab rte content"
+                    },
+                    {
+                        "type": "page",
+                        "id": "tab_page_content",
+                        "label": "Select page content"
+                    },
+                    {
+                        "type": "liquid",
+                        "id": "liquid",
+                        "label": "Liquid code"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Product tabs",
+                "blocks": [
+                    {
+                        "type": "block_content",
+                        "settings": {
+                            "tab_title": "Description",
+                            "liquid": "{{ product.description }}"
+                        }
+                    },
+                    {
+                        "type": "block_content",
+                        "settings": {
+                            "tab_title": "Additional Information"
+                        }
+                    },
+                    {
+                        "type": "block_content",
+                        "settings": {
+                            "tab_title": "Review"
+                        }
+                    },
+                    {
+                        "type": "block_content",
+                        "settings": {
+                            "tab_title": "Shipping"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

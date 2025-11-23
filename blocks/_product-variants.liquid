@@ -20,8 +20,7 @@
             <div class="variant-picker-label">
                 {{ product_option.name | escape }}: <span class="fw-6 variant-picker-label-value">{{ product_option.selected_value }}</span>
             </div>
-            <a href="#find_size" data-bs-toggle="modal" class="find-size fw-6">Find
-                your size</a>
+            {% content_for 'block', type: 'size-guide', id: 'product-size-chart' %}
         </div>
         {% endunless %}
         <div class="variant-picker-values">
@@ -71,7 +70,8 @@
         </div>
     </div>
     {% endfor %}
-    <select class="variant-select d-none" name="id">
+    {% assign form_id = 'product-form-' | append: section.id %}
+    <select class="variant-select d-none" name="id" form="{{ form_id }}">
         {% for variant in product.variants %}
         <option value="{{ variant.id }}"{% if product.selected_or_first_available_variant.id == variant.id %} selected{% endif %}>{{ variant.title }}</option>
         {% endfor %}

@@ -2,7 +2,7 @@
     <div class="thumbs-slider">
         <div dir="ltr" class="swiper tf-product-media-thumbs other-image-zoom{% if product.media.size <= 1 %} d-none{% endif %}"
             data-direction="vertical">
-            <div class="swiper-wrapper stagger-wrap">
+            <div class="swiper-wrapper">
                 {% if product.selected_or_first_available_variant.featured_media != null %}
                 {% assign featured_media_thumb = product.selected_or_first_available_variant.featured_media %}
                 <div class="swiper-slide stagger-item" data-color="beige">

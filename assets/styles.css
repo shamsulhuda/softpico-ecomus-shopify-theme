@@ -6572,6 +6572,10 @@ header.header-bg {
   flex-direction: column;
   height: 100%;
 }
+.modal-shopping-cart .wrap.empty--cart-drawer{
+  justify-content: center;
+  align-items: center;
+}
 .modal-shopping-cart .tf-mini-cart-threshold {
   margin: 0 36px;
   padding: 18px 0 16px;
@@ -8589,7 +8593,7 @@ header.header-bg {
   margin-bottom: 5px;
 }
 
-.tf-product-info-buy-button form {
+.tf-product-info-buy-button form .product-buttons-area {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;

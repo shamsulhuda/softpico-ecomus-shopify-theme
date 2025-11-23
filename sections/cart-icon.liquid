@@ -1,0 +1,12 @@
+<li class="nav-cart" id="header-cart-icon">
+    <a href="#shoppingCart" data-bs-toggle="modal" class="nav-icon-item">
+    <i class="icon icon-bag"></i>
+    <span class="count-box">
+        {% if cart.item_count > 99 %}
+            99+
+        {% else %}
+            {{ cart.item_count }}
+        {% endif %}
+    </span>
+    </a>
+</li>

@@ -7,7 +7,20 @@
 <script src="{{ 'photoswipe.umd.min.js' | asset_url }}" defer></script>
 <script src="{{ 'zoom.js' | asset_url }}" defer></script>
 <script src="{{ 'variant-picker.js' | asset_url }}" defer></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer></script>
+ {% style %}
+.padding-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top |  append: 'px' }};
+    padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+}
 
+@media screen and (max-width: 750px){
+    .padding-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+    }
+}
+{% endstyle %}
 
 <!-- breadcrumb -->
 <div class="tf-breadcrumb">
@@ -39,7 +52,7 @@
 </div>
 <!-- /breadcrumb -->
 <!-- default -->
-<product-info class="flat-spacing-4 pt_0" id="product" data-product-url="{{ product.url }}" data-section-id="{{ section.id }}">
+<product-info class="flat-spacing-4 padding-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" id="product" data-product-url="{{ product.url }}" data-section-id="{{ section.id }}">
     <div class="tf-main-product section-image-zoom">
         <div class="container">
             <div class="row">
@@ -72,9 +85,9 @@
                     {% form 'product', product %}
                         <div class="tf-sticky-atc-variant-price text-center">
                             {% unless product.has_only_default_variant %}
-                            <select class="tf-select">
+                            <select class="tf-select" name="id">
                                 {% for variant in product.variants %}
-                                <option value="{{ variant.id }}"{% if variant.id == product.selected_or_first_available_variant.id %}selected="selected"{% endif %}>{{ variant.title |  escape }} - {{ product.selected_or_first_available_variant.price | money }}</option>
+                                <option value="{{ variant.id }}"{% if variant.id == product.selected_or_first_available_variant.id %} selected="selected"{% endif %}>{{ variant.title |  escape }} - {{ variant.price | money }}</option>
                                 {% endfor %}
                             </select>
                             {% else %}
@@ -89,8 +102,12 @@
                                     <span class="btn-quantity plus-btn">+</span>
                                 </div>
                             </div>
-                            <button type="submit" class="tf-btn btn-fill radius-3 justify-content-center fw-6 fs-14 flex-grow-1 animate-hover-btn btn-add-to-cart">
+                            <button type="submit" class="tf-btn btn-fill radius-3 justify-content-center fw-6 fs-14 flex-grow-1 animate-hover-btn btn-add-to-cart"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>
+                                {% unless product.selected_or_first_available_variant.available %}
+                                <span>Sold Out</span>
+                                {% else %}
                                 <span>Add to cart</span>
+                                {% endunless %}
                             </button>
                         </div>
                     {% endform %}
@@ -105,6 +122,36 @@
         "name": "Main product",
         "class": "main-product",
         "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color_scheme",
+                "label": "Color scheme",
+                "default": "scheme-1"
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
         ],
         "blocks":[
             {

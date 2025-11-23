@@ -30,7 +30,12 @@
  * RTL
 
  */
-
+function fetchConfig(type='json'){
+  return {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', Accept: `application/${type}`},
+  };
+};
 
 (function ($) {
   "use strict";
@@ -108,7 +113,7 @@
   /* Button Quantity
   -------------------------------------------------------------------------------------*/
   var btnQuantity = function () {
-    $(".minus-btn").on("click", function (e) {
+    $(document).on("click", ".minus-btn", function(e){
       e.preventDefault();
       var $this = $(this);
       var $input = $this.closest("div").find("input");
@@ -120,7 +125,7 @@
       $input.val(value);
     });
 
-    $(".plus-btn").on("click", function (e) {
+    $(document).on("click", ".plus-btn", function(e){
       e.preventDefault();
       var $this = $(this);
       var $input = $this.closest("div").find("input");
@@ -477,20 +482,20 @@
     $(".btn-show-quickview").click(function () {
       $("#quick_view").modal("show");
     });
-    $(".btn-add-to-cart").click(function () {
-      $("#shoppingCart").modal("show");
-    });
+    // $(".btn-add-to-cart").click(function () {
+    //   $("#shoppingCart").modal("show");
+    // });
 
-    $(".btn-add-note").click(function () {
+    $(document).on("click",".btn-add-note", function () {
       $(".add-note").addClass("open");
     });
-    $(".btn-add-gift").click(function () {
+    $(document).on("click",".btn-add-gift", function () {
       $(".add-gift").addClass("open");
     });
-    $(".btn-estimate-shipping").click(function () {
-      $(".estimate-shipping").addClass("open");
-    });
-    $(".tf-mini-cart-tool-close ,.tf-mini-cart-tool-close .overplay").click(
+    // $(".btn-estimate-shipping").click(function () {
+    //   $(".estimate-shipping").addClass("open");
+    // });
+    $(document).on("click",".tf-mini-cart-tool-close ,.tf-mini-cart-tool-close .overplay",
       function () {
         $(".tf-mini-cart-tool-openable").removeClass("open");
       }

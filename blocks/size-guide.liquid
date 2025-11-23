@@ -1,0 +1,43 @@
+<a href="#find_size-{{ block.id }}" data-bs-toggle="modal" class="find-size fw-6">{{ block.settings.button_label }}</a>
+<!-- modal find_size -->
+<div class="modal fade modalDemo tf-product-modal popup-findsize" id="find_size-{{ block.id }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="header">
+                <div class="demo-title">{{ block.settings.page.title |  default: "Size Chart"}}</div>
+                <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
+            </div>
+            <div class="tf-rte">
+                {{ block.settings.page.content }}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal find_size -->
+
+{% schema %}
+    {
+        "name": "Size Chart",
+        "settings": [
+            {
+                "type": "text",
+                "id": "button_label",
+                "label": "Button label",
+                "default": "Find your size"
+            },
+            {
+                "type": "page",
+                "id": "page",
+                "label": "Select content"
+            }
+        ],
+        "presets":[
+            {
+                "name": "Size Chart",
+                "settings": {
+                    "page": "size-chart"
+                }
+            }
+        ]
+    }
+{% endschema %}

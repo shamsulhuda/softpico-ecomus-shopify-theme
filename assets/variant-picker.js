@@ -65,10 +65,10 @@ class VariantPicker extends HTMLElement {
 
         const newVariantPicker = html.querySelector('variant-picker');
         const variantPrice = html.querySelector('.tf-product-info-price');
-        const stickyAtc = html.querySelector('.tf-sticky-atc-variant-price select');
+        const stickyAtc = html.querySelector('.tf-sticky-atc-infos');
         const variantId = html.querySelector('select[name="id"]').value;
 
-        const atcButton = html.querySelector('.tf-product-info-buy-button');
+        const atcButton = html.querySelector('.product-buttons-area');
         const variantImage = html.querySelector('input#variant-image-store');
 
         if(newVariantPicker) {
@@ -85,7 +85,6 @@ class VariantPicker extends HTMLElement {
         this._updateUrlVariant(variantId);
         this._updateAtcButton(atcButton);
         this._updateVariantImage(variantImage);
-
       } catch (error){
         console.error('Variant picker fetch error: ', error);
       }
@@ -101,7 +100,7 @@ class VariantPicker extends HTMLElement {
 
     _updateAtc(stickyAtc){
       if(stickyAtc){
-        const atcEl = document.querySelector('.tf-sticky-atc-variant-price select');
+        const atcEl = document.querySelector('.tf-sticky-atc-infos');
         if(atcEl) atcEl.innerHTML = stickyAtc.innerHTML;
       }
     }
@@ -109,11 +108,8 @@ class VariantPicker extends HTMLElement {
     _updateUrlVariant(variantId) {
       try {
         if (!variantId) return;
-
-        // Normalize base URL to an absolute URL relative to current origin
         let absoluteUrl = new URL(window.location.href);
-
-        // Keep existing params (if baseProductUrl included some) and set/replace variant
+        // Keep existing params (if baseProductUrl included any)
         const params = new URLSearchParams(absoluteUrl.search);
         params.set('variant', String(variantId));
         // If absoluteUrl contains origin same as current origin, use pathname + search only (keeps host unchanged)
@@ -128,7 +124,7 @@ class VariantPicker extends HTMLElement {
 
     _updateAtcButton(atcElement) {
       if(atcElement){
-        const atcButton = document.querySelector('.tf-product-info-buy-button');
+        const atcButton = document.querySelector('.product-buttons-area');
         if(atcButton) atcButton.innerHTML = atcElement.innerHTML;
       }
     }
@@ -142,7 +138,6 @@ class VariantPicker extends HTMLElement {
         const mainSlideImg = document.querySelector('#gallery-swiper-started .swiper-slide.swiper-slide-active img');
         const mainSlideHref = document.querySelector('#gallery-swiper-started .swiper-slide.swiper-slide-active a');
         if(slideThumb && thumb != null){
-          console.log({slideThumb});
           thumb.srcset = slideThumb;
           thumb.src = slideThumb;
         }

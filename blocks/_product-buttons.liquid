@@ -1,42 +1,49 @@
-<div class="tf-product-info-buy-button">
+<product-form class="tf-product-info-buy-button">
     {%  liquid 
         assign atc_price = product.selected_or_first_available_variant.price | money
         assign atc_button_disabled = false
         unless product.selected_or_first_available_variant.available
         assign atc_button_disabled = true
         endunless
+
+        assign form_id = 'product-form-' | append: section.id
     %}
-    {% form 'product', product %}
-        {% unless atc_button_disabled %}
-        <button type="submit"
-            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart">
-            Add To Cart - {{ atc_price }}
-        </button>
-        {% else %}
-            <button type="button"
-            class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn disabled" disabled>
-            Sold Out
+    {% form 'product', product, id: form_id %}
+        <div class="product-buttons-area">
+            {% if product.has_only_default_variant %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {% endif %}
+            {% unless atc_button_disabled %}
+            <button type="submit"
+                class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart" aria-disabled="false">
+                Add To Cart - {{ atc_price }}
             </button>
-        {% endunless %}
-        <button type="button"
-            class="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action">
-            <span class="icon icon-heart"></span>
-            <span class="tooltip">Add to Wishlist</span>
-            <span class="icon icon-delete"></span>
-        </button>
-        <button type="button" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft"
-            class="tf-product-btn-wishlist hover-tooltip box-icon bg_white compare btn-icon-action">
-            <span class="icon icon-compare"></span>
-            <span class="tooltip">Add to Compare</span>
-            <span class="icon icon-check"></span>
-        </button>
-        {% if block.settings.enable_dynamic_checkout %}
-        <div class="w-100">
-            {{ form | payment_button }}
+            {% else %}
+                <button type="button"
+                class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn disabled" disabled>
+                Sold Out
+                </button>
+            {% endunless %}
+            <button type="button"
+                class="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action">
+                <span class="icon icon-heart"></span>
+                <span class="tooltip">Add to Wishlist</span>
+                <span class="icon icon-delete"></span>
+            </button>
+            <button type="button" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft"
+                class="tf-product-btn-wishlist hover-tooltip box-icon bg_white compare btn-icon-action">
+                <span class="icon icon-compare"></span>
+                <span class="tooltip">Add to Compare</span>
+                <span class="icon icon-check"></span>
+            </button>
+            {% if block.settings.enable_dynamic_checkout %}
+            <div class="w-100">
+                {{ form | payment_button }}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
     {% endform %}
-</div>
+</product-form>
 
 {% schema %}
     {

@@ -3,7 +3,43 @@
     "type": "aside",
     "sections": {
         "swatch": {
-            "type": "swatch"
+            "type": "swatch",
+            "blocks": {
+                "block-0": {
+                    "type": "swatch",
+                    "settings": {
+                        "color_name": "Red",
+                        "color": "#ff0000"
+                    }
+                },
+                "block-1": {
+                    "type": "swatch",
+                    "settings": {
+                        "color_name": "Blue",
+                        "color": "#a8bcd4"
+                    }
+                },
+                "block-2": {
+                    "type": "swatch",
+                    "settings": {
+                        "color_name": "Black",
+                        "color": "#000000"
+                    }
+                },
+                "block-3": {
+                    "type": "swatch",
+                    "settings": {
+                        "color_name": "White",
+                        "color": "#ffffff"
+                    }
+                }
+            },
+            "block_order": [
+                "block-0",
+                "block-1",
+                "block-2",
+                "block-3"
+            ]
         }
     },
     "order": [

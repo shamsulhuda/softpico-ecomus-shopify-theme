@@ -126,11 +126,21 @@
 
     <div id="wrapper">
       {% sections 'aside-group' %}
+      {% section 'cart-drawer' %}
       {% sections 'header-group' %}
       <main>
         {{ content_for_layout }}
       </main>
       {% sections 'footer-group' %}
     </div>
+    <script>
+      window.shopUrl = '{{ request.origin }}';
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}'
+      }
+    </script>
   </body>
 </html>
