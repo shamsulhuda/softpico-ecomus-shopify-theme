@@ -1,0 +1,115 @@
+  <!-- breadcrumb -->
+{% assign template_name = template |  split: '.' | first %}
+<div class="tf-breadcrumb">
+    <div class="container">
+        <div class="tf-breadcrumb-wrap d-flex justify-content-between flex-wrap align-items-center">
+            <div class="tf-breadcrumb-list">
+                <a href="/" class="text">Home</a>
+                <i class="icon icon-arrow-right"></i>
+                {% case template_name %}
+                    {% when 'page' %}
+                        <span class="text">{{ page.title }}</span>
+                    {% when 'product' %}
+                        {% if product.collections.size > 0 %}
+                        <a href="{{ product.collections.first.url }}" class="text">{{ product.collections.first.title }}</a>
+                        <i class="icon icon-arrow-right"></i>
+                        {% endif %}
+                        <span class="text">{{ product.title }}</span>
+                    {% when 'collection' %}
+                        {% if current_tags %}
+                        <a href="{{ collection.url }}" class="text">{{ collection.title }}</a>
+                        <i class="icon icon-arrow-right"></i>
+                        {%  capture tag_url %} {{ collection.url }}/{{ current_tags |  join: '+'  }} {% endcapture %}
+                        <a href="{{ tag_url }}" class="text">{{ current_tags |  join: '+'  }}</a>
+                        <i class="icon icon-arrow-right"></i>
+                        {% else %}
+                        <span class="text">{{ collection.title }}</span>
+                        {% endif %}
+                    {% when 'blog' %}
+                        {% if current_tags %}
+                        <a href="{{ blog.url }}" class="text">{{ blog.title }}</a>
+                        <i class="icon icon-arrow-right"></i>
+                        {%  capture tag_url %} {{ blog.url }}/{{ current_tags |  join: '+'  }} {% endcapture %}
+                        <a href="{{ tag_url }}" class="text">{{ current_tags |  join: '+'  }}</a>
+                        <i class="icon icon-arrow-right"></i>
+                        {% else %}
+                        <span class="text">{{ blog.title }}</span>
+                        {% endif %}
+                    {% when 'acticle' %}
+                        <a href="{{ blog.url }}" class="text">{{ blog.title }}</a>
+                        <i class="icon icon-arrow-right"></i>
+                        <span class="text">{{ article.title }}</span>
+                    {% else %}
+                        <a href="{{ request.path }}" class="text">{{ page_title }}</a>
+                    
+                {% endcase %}
+            </div>
+            <div class="tf-breadcrumb-prev-next">
+                {% assign current_collection = collection %}
+
+                {% if current_collection == nil %}
+                    {% assign current_collection = product.collections.first %}
+                {% endif %}
+
+                {% if current_collection %}
+                    {% assign products = current_collection.products %}
+                    {% assign product_index = nil %}
+                {% endif %}
+
+                {% for p in products %}
+                    {% if p.handle == product.handle %}
+                        {%  assign product_index = forloop.index0 %}
+                        {%  break %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if product_index != nil %}
+                    {% assign last_index = products.size |  minus: 1 %}
+
+                    {% if product_index == 0 %}
+                        {% assign prev_index = last_index %}
+                    {% else %}
+                        {% assign prev_index = product_index | minus: 1 %}
+                    {% endif %}
+
+                    {% if product_index == last_index %}
+                        {% assign next_index = 0 %}
+                    {% else %}
+                        {% assign next_index = product_index | plus: 1 %}
+                    {% endif %}
+
+                    {% assign prev_product = products[prev_index] %}
+                    {% assign next_product = products[next_index] %}
+
+                    
+                <a href="{{ prev_product.url }}" class="tf-breadcrumb-prev hover-tooltip center">
+                    <i class="icon icon-arrow-left"></i>
+                    <span class="tooltip">{{ prev_product.title }}</span>
+                </a>
+                <a href="{{ current_collection.url }}" class="tf-breadcrumb-back hover-tooltip center">
+                    <i class="icon icon-shop"></i>
+                    <span class="tooltip">Back to {{ current_collection.title }}</span>
+                </a>
+                <a href="{{ next_product.url }}" class="tf-breadcrumb-next hover-tooltip center">
+                    <i class="icon icon-arrow-right"></i>
+                    <span class="tooltip">{{ next_product.title }}</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /breadcrumb -->
+
+{%  schema  %} 
+{
+    "name": "Breadcrumb",
+    "disabled_on": {"templates": ["index","cart","list-collections","404"]},
+    "settings": [],
+    "presets": [
+        {
+            "name": "Breadcrumb"
+        }
+    ]
+}
+{% endschema %}

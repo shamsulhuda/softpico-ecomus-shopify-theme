@@ -113,29 +113,29 @@ function fetchConfig(type='json'){
   /* Button Quantity
   -------------------------------------------------------------------------------------*/
   var btnQuantity = function () {
-    $(document).on("click", ".minus-btn", function(e){
-      e.preventDefault();
-      var $this = $(this);
-      var $input = $this.closest("div").find("input");
-      var value = parseInt($input.val());
+    // $(document).on("click", ".minus-btn", function(e){
+    //   e.preventDefault();
+    //   var $this = $(this);
+    //   var $input = $this.closest("div").find("input");
+    //   var value = parseInt($input.val());
 
-      if (value > 1) {
-        value = value - 1;
-      }
-      $input.val(value);
-    });
+    //   if (value > 1) {
+    //     value = value - 1;
+    //   }
+    //   $input.val(value);
+    // });
 
-    $(document).on("click", ".plus-btn", function(e){
-      e.preventDefault();
-      var $this = $(this);
-      var $input = $this.closest("div").find("input");
-      var value = parseInt($input.val());
+    // $(document).on("click", ".plus-btn", function(e){
+    //   e.preventDefault();
+    //   var $this = $(this);
+    //   var $input = $this.closest("div").find("input");
+    //   var value = parseInt($input.val());
 
-      if (value > -1) {
-        value = value + 1;
-      }
-      $input.val(value);
-    });
+    //   if (value > -1) {
+    //     value = value + 1;
+    //   }
+    //   $input.val(value);
+    // });
   };
 
   /* Delete file 
@@ -154,10 +154,7 @@ function fetchConfig(type='json'){
       var $this = $(this);
       $this.closest(".tf-compare-item").remove();
     });
-    $(".tf-mini-cart-remove").on("click", function (e) {
-      console.log('hhh')
-      $(this).closest(".tf-mini-cart-item").remove();
-    });
+    
 
   };
 

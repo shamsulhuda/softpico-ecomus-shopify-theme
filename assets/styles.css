@@ -3803,8 +3803,9 @@ header.header-bg {
 }
 
 .btn-outline {
-  background-color: var(--white);
-  border: 1px solid var(--main);
+    background-color: rgba(var(--color-secondary-button));
+    border: 1px solid rgba(var(--color-secondary-button-text));
+    color: rgba(var(--color-secondary-button-text));
 }
 
 .btn-outline-2 {

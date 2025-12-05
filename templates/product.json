@@ -132,10 +132,15 @@
                 "tab-2",
                 "tab-3"
             ]
+        },
+        "related-products":{
+            "type": "related-product",
+            "settings": {}
         }
     },
     "order": [
         "main-product",
-        "product-tabs"
+        "product-tabs",
+        "related-products"
     ]
 }

@@ -1,0 +1,189 @@
+{{ 'card-product-component.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'related-products.js' |  asset_url }}" defer></script>
+ {% style %}
+    .padding-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top |  append: 'px' }};
+        padding-bottom: {{ section.settings.padding_bottom |  append: 'px' }};
+    }
+
+    @media screen and (max-width: 750px){
+        .padding-{{ section.id }}{
+            padding-top: {{ section.settings.padding_top | minus: 5 | append: 'px' }};
+            padding-bottom: {{ section.settings.padding_bottom | minus: 5 | append: 'px' }};
+        }
+    }
+ {% endstyle %}
+
+<div class="flat-spacing-1 padding-{{ section.id }} color-{{ section.settings.color }} gradient">
+    <product-recommendations 
+        data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_limit }}"
+        data-section-id="{{ section.id }}"
+        data-product-id="{{ product.id }}"
+        >
+        <div class="container">
+            {% if recommendations.performed and recommendations.products_count > 0 %}
+            <div class="flat-title">
+                <span class="title">{{ section.settings.heading }}</span>
+            </div>
+            <div class="hover-sw-nav hover-sw-2">
+                <div dir="ltr" class="swiper tf-sw-product-sell wrap-sw-over" data-preview="{{ section.settings.desktop_view }}" data-tablet="{{ section.settings.tablet_view }}"
+                    data-mobile="{{ section.settings.Mobile_view }}" data-space-lg="{{ section.settings.space }}" data-space-md="15" data-pagination="2" data-pagination-md="3"
+                    data-pagination-lg="3">
+                    <div class="swiper-wrapper">
+                        {% for recommendation in recommendations.products %}
+                        <div class="swiper-slide" lazy="true">
+                            {% render 'card-product', product: recommendation %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="nav-sw nav-next-slider nav-next-product box-icon w_46 round"><span
+                        class="icon icon-arrow-left"></span></div>
+                <div class="nav-sw nav-prev-slider nav-prev-product box-icon w_46 round"><span
+                        class="icon icon-arrow-right"></span></div>
+                <div class="sw-dots style-2 sw-pagination-product justify-content-center"></div>
+            </div>
+            {% endif %}
+        </div>
+    </product-recommendations>
+</div>
+
+{% schema %}
+    {
+        "name": "Related products",
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color",
+                "label": "Color",
+                "default": "scheme-1"
+            },
+            {
+                "type": "inline_richtext",
+                "id": "heading",
+                "label": "Heading",
+                "default": "People Also Bought"
+            },
+            {
+                "type": "range",
+                "id": "products_limit",
+                "label": "Products limit",
+                "min": 1,
+                "max": 20,
+                "step": 1,
+                "default": 4
+            },
+            {
+                "type": "header",
+                "content": "Slider settings"
+            },
+            {
+                "type": "select",
+                "id": "desktop_view",
+                "label": "Desktop slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    },
+                    {
+                        "label": "5",
+                        "value": "5"
+                    }
+                ],
+                "default": "4"
+            },
+            {
+                "type": "select",
+                "id": "tablet_view",
+                "label": "Table slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    },
+                    {
+                        "label": "3",
+                        "value": "3"
+                    },
+                    {
+                        "label": "4",
+                        "value": "4"
+                    }
+                ],
+                "default": "3"
+            },
+            {
+                "type": "select",
+                "id": "Mobile_view",
+                "label": "Mobile slider",
+                "options": [
+                    {
+                        "label": "1",
+                        "value": "1"
+                    },
+                    {
+                        "label": "2",
+                        "value": "2"
+                    }
+                ],
+                "default": "2"
+            },
+            {
+                "type": "range",
+                "id": "space",
+                "label": "Space",
+                "min": 0,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "header",
+                "content": "Section padding"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "label": "Padding top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "label": "Padding bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "default": 15
+            }
+        ],
+        "presets": [
+            {
+                "name": "Related products"
+            }
+        ]
+    }
+{% endschema %}

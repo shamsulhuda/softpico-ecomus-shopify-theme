@@ -1,4 +1,53 @@
 <!-- shoppingCart -->
+ {% style %}
+ .line-item-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.line-item-loader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(2px);
+}
+
+.line-item-loader-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.tf-mini-cart-item {
+    position: relative;
+}
+
+.tf-mini-cart-item.loading {
+    pointer-events: none;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+{% endstyle %}
+
+{%  assign gift_product = section.settings.product |  default: product %}
+{%  assign gift_item_available = false %}
 <cart-drawer class="modal fullRight fade modal-shopping-cart" id="shoppingCart">
     <div id="CartDrawer" class="modal-dialog">
         <div class="modal-content drawer__inner{% if cart == empty %} cart--empty{% endif %}">
@@ -50,8 +99,12 @@
                 <div class="tf-mini-cart-wrap">
                     <div class="tf-mini-cart-main">
                         <div class="tf-mini-cart-sroll">
-                            <div class="tf-mini-cart-items">
+                            <cart-items class="tf-mini-cart-items">
+                                {% form 'cart', cart, id: 'cart-drawer-form' %}
                                 {% for item in cart.items %}
+                                    {% if gift_product != blank and item.variant_id == gift_product.selected_or_first_available_variant.id %}
+                                        {% assign gift_item_available = true %}
+                                    {% endif  %}
                                 <div class="tf-mini-cart-item">
                                     <div class="tf-mini-cart-image">
                                         <a href="{{ item.url }}">
@@ -74,7 +127,11 @@
                                         <div class="tf-mini-cart-btns">
                                             <div class="wg-quantity small">
                                                 <span class="btn-quantity minus-btn">-</span>
-                                                <input type="text" name="quantity" value="{{- item.quantity -}}">
+                                                <input type="text" 
+                                                    name="updates[]" 
+                                                    value="{{- item.quantity -}}"
+                                                    data-quantity-variant-id="{{ item.variant.id }}"
+                                                    data-index="{{ forloop.index }}">
                                                 <span class="btn-quantity plus-btn">+</span>
                                             </div>
                                             <div class="tf-mini-cart-remove">Remove</div>
@@ -82,7 +139,8 @@
                                     </div>
                                 </div>
                                 {% endfor %}
-                            </div>
+                            {% endform %}
+                            </cart-items>
                             {% if section.settings.products != blank %}
                             <div class="tf-minicart-recommendations">
                                 <div class="tf-minicart-recommendations-heading">
@@ -130,6 +188,7 @@
                                     </path>
                                 </svg>
                             </div>
+                            {% if section.settings.enable_giftwrap %}
                             <div class="tf-mini-cart-tool-btn btn-add-gift">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18"
                                     fill="currentColor">
@@ -138,6 +197,7 @@
                                     </path>
                                 </svg>
                             </div>
+                            {% endif %}
                         </div>
                         <div class="tf-mini-cart-bottom-wrap">
                             <div class="tf-cart-totals-discounts">
@@ -146,6 +206,7 @@
                             </div>
                             <div class="tf-cart-tax">Taxes and <a href="#">shipping</a> calculated at checkout</div>
                             <div class="tf-mini-cart-line"></div>
+                            {% if section.settings.checkagreement %}
                             <div class="tf-cart-checkbox">
                                 <div class="tf-checkbox-wrapp">
                                     <input class="" type="checkbox" id="CartDrawer-Form_agree"
@@ -155,17 +216,20 @@
                                     </div>
                                 </div>
                                 <label for="CartDrawer-Form_agree">
-                                    I agree with the
-                                    <a href="#" title="Terms of Service">terms and conditions</a>
+                                    {{ section.settings.label }}
                                 </label>
                             </div>
+                            {% endif %}
                             <div class="tf-mini-cart-view-checkout">
-                                <a href="view-cart.html"
+                                <a href="{{ routes.cart_url }}"
                                     class="tf-btn btn-outline radius-3 link w-100 justify-content-center">View
                                     cart</a>
-                                <a href="checkout.html"
-                                    class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Check
-                                        out</span></a>
+                                <button type="submit"
+                                    name="checkout"
+                                    form="cart-drawer-form"
+                                    class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center">
+                                    <span>Check out</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -194,9 +258,12 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="tf-mini-cart-tool-openable add-gift">
                         <div class="overplay tf-mini-cart-tool-close"></div>
-                        <form class="tf-product-form-addgift">
+                        {% form 'product', gift_product, class:'tf-product-form-addgift', id: 'giftwarapitem' %}
+                            <input type="hidden" name="id" value="{{ gift_product.first_available_variant.id }}">
+                            <input type="hidden" name="quantity" value="1">
                             <div class="tf-mini-cart-tool-content">
                                 <div class="tf-mini-cart-tool-text">
                                     <div class="icon">
@@ -210,19 +277,32 @@
                                     <div class="tf-gift-wrap-infos">
                                         <p>Do you want a gift wrap?</p>
                                         Only
-                                        <span class="price fw-6">$5.00</span>
+                                        <span class="price fw-6">{{ gift_product.price | money }}</span>
                                     </div>
                                 </div>
-                                <div class="tf-cart-tool-btns">
-                                    <button type="submit"
+                                <div class="tf-cart-tool-btns">                                    
+                                    {% if gift_item_available %}
+                                        <button type="button"
+                                        class="tf-btn fw-6 w-100 justify-content-center btn-fill animate-hover-btn radius-3" disabled>
+                                        <span>Item added</span>
+                                        </button>
+                                    {% elsif gift_product != blank %}
+                                        <button type="submit"
+                                        name="add"
+                                        data-id="{{ gift_product.first_available_variant.id }}"
                                         class="tf-btn fw-6 w-100 justify-content-center btn-fill animate-hover-btn radius-3"><span>Add
                                             a gift wrap</span></button>
+                                    {% else %}
+                                    <button type="button"
+                                        class="tf-btn fw-6 w-100 justify-content-center btn-fill animate-hover-btn radius-3" disabled><span>Add
+                                            a gift wrap</span></button>
+                                    {% endif %}
                                     <div
                                         class="tf-mini-cart-tool-primary text-center w-100 fw-6 tf-mini-cart-tool-close">
                                         Cancel</div>
                                 </div>
                             </div>
-                        </form>
+                        {% endform %}
                     </div>
                 </div>
             </div>
@@ -275,6 +355,37 @@
                 "type": "product_list",
                 "id": "products",
                 "label": "Product list"
+            },
+            {
+                "type": "header",
+                "content": "Gift Wrap"
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_giftwrap",
+                "label": "Enable Gift Wrap",
+                "default": true
+            },
+            {
+                "type": "product",
+                "id": "product",
+                "label": "Select gift wrap product"
+            },
+            {
+                "type": "header",
+                "content": "Check Agreement"
+            },
+            {
+                "type": "checkbox",
+                "id": "checkagreement",
+                "label": "Check & Agree",
+                "default": false
+            },
+            {
+                "type": "inline_richtext",
+                "id": "label",
+                "label": "Agreement label",
+                "default": "I agree with the <a href='#'>terms and conditions</a>"
             }
         ]
     }
