@@ -1,146 +1,237 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "main-product": {
-            "type": "main-product",
-            "blocks": {
-                "title":{
-                    "type": "_product-title"
-                },
-                "price": {
-                    "type": "_product-price"
-                },
-                "visitors": {
-                    "type": "_product-visitors"
-                },
-                "countdown": {
-                    "type": "countdown"
-                },
-                "variants": {
-                    "type": "_product-variants"
-                },
-                "quantity": {
-                    "type": "_product-quantity"
-                },
-                "buttons": {
-                    "type": "_product-buttons"
-                },
-                "extra-info": {
-                    "type": "_product-extra-info",
-                    "blocks": {
-                        "ask-questions": {
-                            "type": "ask-questions",
-                            "settings":{
-                                "icon": "icon-question",
-                                "title": "Ask a question"
-                            }
-                        },
-                        "delivery-return": {
-                            "type": "delivery-return",
-                            "settings":{
-                                "icon": "icon-delivery-time",
-                                "title": "Delivery & Return"
-                            }
-                        },
-                        "social-share": {
-                            "type": "social-share",
-                            "settings":{
-                                "icon": "icon-share",
-                                "title": "Social Share"
-                            }
-                        }
-                    },
-                    "block_order":[
-                        "ask-questions",
-                        "delivery-return",
-                        "social-share"
-                    ]
-                },
-                "delivery-return": {
-                    "type": "_product-info-box",
-                    "settings": {},
-                    "blocks": {
-                        "info-box-1": {
-                            "type": "info-box",
-                            "settings": {
-                                "icon": "icon-delivery-time",
-                                "text": "<p>Estimate delivery times: <strong>12-26 days</strong> (International), <strong>3-6 days</strong> (United States).</p>"
-                            }
-                        },
-                        "info-box-2": {
-                            "type": "info-box",
-                            "settings": {
-                                "icon": "icon-return-order",
-                                "text": "<p>Return within <strong>30 days</strong> of purchase. Duties & taxes are non-refundable.</p>"
-                            }
-                        }
-                    },
-                    "block_order": [
-                        "info-box-1",
-                        "info-box-2"
-                    ]
-                },
-                "guarantee": {
-                    "type": "_product-guarantee"
-                },
-            },
-            "block_order": [
-                "title",
-                "price",
-                "visitors",
-                "countdown",
-                "variants",
-                "quantity",
-                "buttons",
-                "extra-info",
-                "delivery-return",
-                "guarantee"
-            ],
-            "settings": {}
-        },
-        "product-tabs": {
-            "type": "product-tabs",
-            "blocks": {
-                "tab-0":{
-                    "type": "block_content",
-                    "settings": {
-                        "tab_title": "Description",
-                        "liquid": "{{ product.content }}"
-                    }
-                },
-                "tab-1":{
-                    "type": "block_content",
-                    "settings": {
-                        "tab_title": "Additional Information"
-                    }
-                },
-                "tab-2":{
-                    "type": "block_content",
-                    "settings": {
-                        "tab_title": "Reviews"
-                    }
-                },
-                "tab-3":{
-                    "type": "block_content",
-                    "settings": {
-                        "tab_title": "Shipping & Returns"
-                    }
-                }
-            },
-            "block_order": [
-                "tab-0",
-                "tab-1",
-                "tab-2",
-                "tab-3"
-            ]
-        },
-        "related-products":{
-            "type": "related-product",
-            "settings": {}
-        }
+  "sections": {
+    "breadcrumb_ter37E": {
+      "type": "breadcrumb",
+      "name": "Breadcrumb",
+      "settings": {}
     },
-    "order": [
-        "main-product",
-        "product-tabs",
-        "related-products"
-    ]
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "_product-title",
+          "settings": {},
+          "blocks": {}
+        },
+        "price": {
+          "type": "_product-price",
+          "settings": {},
+          "blocks": {}
+        },
+        "visitors": {
+          "type": "_product-visitors",
+          "settings": {
+            "text": "People are viewing this right now"
+          },
+          "blocks": {}
+        },
+        "countdown": {
+          "type": "countdown",
+          "settings": {
+            "text": "HURRY UP! SALE ENDS IN:",
+            "end_date": "2025-12-10"
+          },
+          "blocks": {}
+        },
+        "variants": {
+          "type": "_product-variants",
+          "settings": {
+            "variant_style": "buttons",
+            "show_swatches": true
+          },
+          "blocks": {
+            "product-size-chart": {
+              "type": "size-guide",
+              "static": true,
+              "settings": {
+                "button_label": "Find your size",
+                "page": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        },
+        "quantity": {
+          "type": "_product-quantity",
+          "settings": {},
+          "blocks": {}
+        },
+        "buttons": {
+          "type": "_product-buttons",
+          "settings": {
+            "enable_dynamic_checkout": false
+          },
+          "blocks": {}
+        },
+        "extra-info": {
+          "type": "_product-extra-info",
+          "settings": {},
+          "blocks": {
+            "ask-questions": {
+              "type": "ask-questions",
+              "settings": {
+                "icon": "icon-question",
+                "title": "Ask a question"
+              },
+              "blocks": {}
+            },
+            "delivery-return": {
+              "type": "delivery-return",
+              "settings": {
+                "icon": "icon-delivery-time",
+                "title": "Delivery & Return",
+                "content": ""
+              },
+              "blocks": {}
+            },
+            "social-share": {
+              "type": "social-share",
+              "settings": {
+                "icon": "icon-share",
+                "title": "Social Share"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "ask-questions",
+            "delivery-return",
+            "social-share"
+          ]
+        },
+        "delivery-return": {
+          "type": "_product-info-box",
+          "settings": {},
+          "blocks": {
+            "info-box-1": {
+              "type": "info-box",
+              "settings": {
+                "icon": "icon-delivery-time",
+                "text": "<p>Estimate delivery times: <strong>12-26 days</strong> (International), <strong>3-6 days</strong> (United States).</p>"
+              },
+              "blocks": {}
+            },
+            "info-box-2": {
+              "type": "info-box",
+              "settings": {
+                "icon": "icon-return-order",
+                "text": "<p>Return within <strong>30 days</strong> of purchase. Duties & taxes are non-refundable.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "info-box-1",
+            "info-box-2"
+          ]
+        },
+        "guarantee": {
+          "type": "_product-guarantee",
+          "settings": {
+            "text": "Safe Checkout"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "visitors",
+        "countdown",
+        "variants",
+        "quantity",
+        "buttons",
+        "extra-info",
+        "delivery-return",
+        "guarantee"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "product-tabs": {
+      "type": "product-tabs",
+      "blocks": {
+        "tab-0": {
+          "type": "block_content",
+          "settings": {
+            "tab_title": "Description",
+            "tab_rte_content": "",
+            "tab_page_content": "",
+            "liquid": "{{ product.content }}"
+          }
+        },
+        "tab-1": {
+          "type": "block_content",
+          "settings": {
+            "tab_title": "Additional Information",
+            "tab_rte_content": "",
+            "tab_page_content": "",
+            "liquid": ""
+          }
+        },
+        "tab-2": {
+          "type": "block_content",
+          "settings": {
+            "tab_title": "Reviews",
+            "tab_rte_content": "",
+            "tab_page_content": "",
+            "liquid": ""
+          }
+        },
+        "tab-3": {
+          "type": "block_content",
+          "settings": {
+            "tab_title": "Shipping & Returns",
+            "tab_rte_content": "",
+            "tab_page_content": "",
+            "liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab-0",
+        "tab-1",
+        "tab-2",
+        "tab-3"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    },
+    "related-products": {
+      "type": "related-product",
+      "settings": {
+        "color": "",
+        "heading": "People Also Bought",
+        "products_limit": 4,
+        "desktop_view": "4",
+        "tablet_view": "3",
+        "Mobile_view": "2",
+        "space": 15,
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    }
+  },
+  "order": [
+    "breadcrumb_ter37E",
+    "main-product",
+    "product-tabs",
+    "related-products"
+  ]
 }

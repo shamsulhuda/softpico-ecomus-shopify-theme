@@ -1,46 +1,51 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "name": "Footer group",
-    "type": "footer",
-    "sections": {
-        "footer": {
-            "type": "footer-menu",
-            "blocks": {
-                "store_info": {
-                    "type": "store_info"
-                },
-                "menu_list": {
-                    "type": "menu_list",
-                    "settings": {
-                        "header": "Footer menu"
-                    }
-                },
-                "menu_list-1": {
-                    "type": "menu_list",
-                    "settings": {
-                        "header": "Help"
-                    }
-                },
-                "signup": {
-                    "type": "signup",
-                    "settings": {
-                        "header": "Sign up",
-                        "text": "Sign up to get first dibs on new arrivals, sales, exclusive content, events and more!"
-                    }
-                }
-            },
-            "block_order": [
-                "store_info",
-                "menu_list",
-                "menu_list-1",
-                "signup"
-            ],
-            "settings": {
-                "copywrite": "&copy; {{ 'now' | date: '%Y' }}, {{ shop.name |  link_to: routes.root_url }}",
-                "show_payment_icons": true
-            }
+  "name": "Footer group",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer-menu",
+      "blocks": {
+        "store_info": {
+          "type": "store_info",
+          "settings": {}
         },
-    },
-    "order": [
-        "footer"
-    ]
+        "menu_list": {
+          "type": "menu_list",
+          "settings": {}
+        },
+        "menu_list-1": {
+          "type": "menu_list",
+          "settings": {}
+        },
+        "signup": {
+          "type": "signup",
+          "settings": {
+            "text": "Sign up to get first dibs on new arrivals, sales, exclusive content, events and more!"
+          }
+        }
+      },
+      "block_order": [
+        "store_info",
+        "menu_list",
+        "menu_list-1",
+        "signup"
+      ],
+      "settings": {
+        "copywrite": "&copy; {{ 'now' | date: '%Y' }}, {{ shop.name |  link_to: routes.root_url }}",
+        "show_payment_icons": true
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
 }

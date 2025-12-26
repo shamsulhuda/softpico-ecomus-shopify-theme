@@ -44,6 +44,7 @@
                     
                 {% endcase %}
             </div>
+            {% if template.name contains 'product' %}
             <div class="tf-breadcrumb-prev-next">
                 {% assign current_collection = collection %}
 
@@ -96,6 +97,7 @@
                 </a>
                 {% endif %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

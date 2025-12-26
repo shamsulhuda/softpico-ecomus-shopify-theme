@@ -1,0 +1,44 @@
+<!-- page-title -->
+<div class="tf-page-title">
+    <div class="container-full">
+        <div class="heading text-center">Collections</div>
+    </div>
+</div>
+<!-- /page-title -->
+<section class="flat-spacing-1">
+    <div class="container">
+        {% paginate collections by 4 %}
+        <div class="tf-grid-layout xl-col-3 tf-col-2">
+            {% for collection in collections %}
+            <div class="collection-item hover-img">
+                <div class="collection-inner">
+                    <a href="{{ collection.url }}" class="collection-image img-style">
+                        {% if collection.featured_image %}
+                        {{ collection.featured_image | image_url: width: 500, height: 500 |  image_tag: sizes: "300,400,500", class: "lazyload", alt: collection.title }}
+                        {% else %}
+                            {{ 'collection-1' |  placeholder_svg_tag }}
+                        {% endif %}
+                    </a>
+                    <div class="collection-content">
+                        <a href="{{ collection.url }}"
+                            class="tf-btn collection-title hover-icon"><span>{{ collection.title }}</span><i
+                                class="icon icon-arrow1-top-left"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% render 'paginate', paginate: paginate %}
+        {% endpaginate %}        
+    </div>
+</section>
+
+{% schema %}
+    {
+        "name": "List Collections",
+        "settings": [
+        
+        ]
+    }
+{% endschema %}

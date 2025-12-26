@@ -30,12 +30,23 @@
  * RTL
 
  */
-function fetchConfig(type='json'){
+function fetchConfig(type = 'json') {
   return {
     method: 'POST',
-    headers: {'Content-Type': 'application/json', Accept: `application/${type}`},
+    headers: { 'Content-Type': 'application/json', Accept: `application/${type}` },
   };
-};
+}
+
+function reinitProductForms() {
+  document.querySelectorAll('product-form').forEach((el) => {
+    if (!el.__initialized) {
+      el.__initialized = true;       // avoid double-upgrade
+      try { customElements.upgrade(el); } catch (e) { console.warn('upgrade failed', e); }
+    }
+  });
+}
+
+
 
 (function ($) {
   "use strict";
@@ -113,7 +124,7 @@ function fetchConfig(type='json'){
   /* Button Quantity
   -------------------------------------------------------------------------------------*/
   var btnQuantity = function () {
-    // $(document).on("click", ".minus-btn", function(e){
+    // $(document).on("click",".minus-btn", function(e){
     //   e.preventDefault();
     //   var $this = $(this);
     //   var $input = $this.closest("div").find("input");
@@ -125,7 +136,7 @@ function fetchConfig(type='json'){
     //   $input.val(value);
     // });
 
-    // $(document).on("click", ".plus-btn", function(e){
+    // $(document).on("click",".plus-btn", function(e){
     //   e.preventDefault();
     //   var $this = $(this);
     //   var $input = $this.closest("div").find("input");
@@ -154,7 +165,10 @@ function fetchConfig(type='json'){
       var $this = $(this);
       $this.closest(".tf-compare-item").remove();
     });
-    
+    // $(".tf-mini-cart-remove").on("click", function (e) {
+    //   console.log('hhh')
+    //   $(this).closest(".tf-mini-cart-item").remove();
+    // });
 
   };
 
@@ -188,10 +202,12 @@ function fetchConfig(type='json'){
   -------------------------------------------------------------------------*/
   var swatchColor = function () {
     if ($(".card-product").length > 0) {
-      $(".color-swatch").on("click, mouseover", function () {
-        var swatchColor = $(this).find("img").attr("src");
+      $(".color-swatch").on("click", function () {
+        var swatchColorSrc = $(this).find("img").attr("src");
+        var swatchColorSrcset = $(this).find("img").attr("srcset");
         var imgProduct = $(this).closest(".card-product").find(".img-product");
         imgProduct.attr("src", swatchColor);
+        imgProduct.attr("srcset", swatchColorSrcset);
         $(this)
           .closest(".card-product")
           .find(".color-swatch.active")
@@ -486,14 +502,14 @@ function fetchConfig(type='json'){
     $(document).on("click",".btn-add-note", function () {
       $(".add-note").addClass("open");
     });
+
     $(document).on("click",".btn-add-gift", function () {
       $(".add-gift").addClass("open");
     });
-    // $(".btn-estimate-shipping").click(function () {
-    //   $(".estimate-shipping").addClass("open");
-    // });
-    $(document).on("click",".tf-mini-cart-tool-close ,.tf-mini-cart-tool-close .overplay",
-      function () {
+    $(".btn-estimate-shipping").click(function () {
+      $(".estimate-shipping").addClass("open");
+    });
+    $(document).on("click",".tf-mini-cart-tool-close ,.tf-mini-cart-tool-close .overplay", function () {
         $(".tf-mini-cart-tool-openable").removeClass("open");
       }
     );
@@ -555,7 +571,7 @@ function fetchConfig(type='json'){
   var totalPriceVariant = function () {
 
     var basePrice = parseFloat($(".price-on-sale").data("base-price")) || parseFloat($(".price-on-sale").text().replace("$", ""));
-    var quantityInput = $(".quantity-product");
+    
     // quantityInput.on("keydown keypress input", function(event) {
     //   event.preventDefault();
     // });
@@ -567,21 +583,25 @@ function fetchConfig(type='json'){
     //   $(".total-price").text("$" + totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     // });
 
-    $(".btn-increase").on("click", function () {
+
+    $(document).on("click", ".btn-increase", function(){
+      var quantityInput = $(document).find(".quantity-product");
+      console.log('clicked');
       var currentQuantity = parseInt(quantityInput.val());
       quantityInput.val(currentQuantity + 1);
-      // updateTotalPrice();
-    });
-
-    $(".btn-decrease").on("click", function () {
+    })
+    $(document).on("click", ".btn-decrease", function(){
+      var quantityInput = $(document).find(".quantity-product");
       var currentQuantity = parseInt(quantityInput.val());
       if (currentQuantity > 1) {
         quantityInput.val(currentQuantity - 1);
         // updateTotalPrice();
       }
-    });
+    })
+  
 
     function updateTotalPrice() {
+      var quantityInput = $(document).find(".quantity-product");
       var currentPrice = parseFloat($(".price-on-sale").text().replace("$", ""));
       var quantity = parseInt(quantityInput.val());
       var totalPrice = currentPrice * quantity;

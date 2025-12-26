@@ -46,7 +46,7 @@
 }
 {% endstyle %}
 
-{%  assign gift_product = section.settings.product |  default: product %}
+{%  assign gift_product = section.settings.product %}
 {%  assign gift_item_available = false %}
 <cart-drawer class="modal fullRight fade modal-shopping-cart" id="shoppingCart">
     <div id="CartDrawer" class="modal-dialog">
@@ -99,7 +99,7 @@
                 <div class="tf-mini-cart-wrap">
                     <div class="tf-mini-cart-main">
                         <div class="tf-mini-cart-sroll">
-                            <cart-items class="tf-mini-cart-items">
+                            <cart-items class="tf-mini-cart-items">                                
                                 {% form 'cart', cart, id: 'cart-drawer-form' %}
                                 {% for item in cart.items %}
                                     {% if gift_product != blank and item.variant_id == gift_product.selected_or_first_available_variant.id %}
@@ -258,7 +258,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    {% if gift_product != blank %}
                     <div class="tf-mini-cart-tool-openable add-gift">
                         <div class="overplay tf-mini-cart-tool-close"></div>
                         {% form 'product', gift_product, class:'tf-product-form-addgift', id: 'giftwarapitem' %}
@@ -304,6 +304,7 @@
                             </div>
                         {% endform %}
                     </div>
+                    {% endif %}
                 </div>
             </div>
             {% else %}

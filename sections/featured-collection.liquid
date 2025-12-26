@@ -1,5 +1,9 @@
 <!-- Best seller -->
  {{ 'card-product-component.css' | asset_url | stylesheet_tag }}
+
+ <script src="{{ 'variant-picker.js' | asset_url }}" defer></script>
+ <script src="{{ 'product-form.js' | asset_url }}" defer></script>
+ <script src="{{ 'quick-add.js' |  asset_url }}" defer></script>
   {% style %}
     .padding-{{ section.id }}{
         padding-top: {{ section.settings.padding_top |  append: 'px' }};
@@ -51,6 +55,7 @@
     </div>
 </section>
 <!-- /Best seller -->
+ {%  render 'quick-view', section: section %}
 
 {% schema %}
     {

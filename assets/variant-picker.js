@@ -16,7 +16,7 @@ class VariantPicker extends HTMLElement {
       const target = event.target;
       if(!target) return;
 
-      const productElement = target.closest('#product');
+      const productElement = target.closest('product-info');
       const sectionId = productElement.dataset.sectionId || '';
       const currentUrl = productElement.dataset.productUrl || '';
 
@@ -82,9 +82,11 @@ class VariantPicker extends HTMLElement {
 
         this._updatePrice(variantPrice);
         this._updateAtc(stickyAtc);
-        this._updateUrlVariant(variantId);
         this._updateAtcButton(atcButton);
         this._updateVariantImage(variantImage);
+        if (window.location.pathname.includes('/products')) {  // Exclude the other pages variant parameter
+          this._updateUrlVariant(variantId);
+        }
       } catch (error){
         console.error('Variant picker fetch error: ', error);
       }

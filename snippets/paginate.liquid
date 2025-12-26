@@ -1,0 +1,36 @@
+{% if paginate.pages > 1 %}
+<ul class="tf-pagination-wrap tf-pagination-list">
+    {% if paginate.previous %}
+    <li>
+        <a href="{{ paginate.previous.url }}" class="pagination-link animate-hover-btn">
+            <span class="icon icon-arrow-left"></span>
+        </a>
+    </li>
+    {% endif %}
+
+    {% for part in paginate.parts %}
+        {% if part.is_link %}
+        <li>
+            <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+        </li>
+        {% else %}
+            {% if part.title == paginate.current_page %}
+                <li class="active">
+                    <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+                </li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if paginate.next %}
+    <li>
+        <a href="{{ paginate.next.url }}" class="pagination-link animate-hover-btn">
+            <span class="icon icon-arrow-right"></span>
+        </a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}

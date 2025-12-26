@@ -1,48 +1,58 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "name": "Aside Group",
-    "type": "aside",
-    "sections": {
-        "swatch": {
-            "type": "swatch",
-            "blocks": {
-                "block-0": {
-                    "type": "swatch",
-                    "settings": {
-                        "color_name": "Red",
-                        "color": "#ff0000"
-                    }
-                },
-                "block-1": {
-                    "type": "swatch",
-                    "settings": {
-                        "color_name": "Blue",
-                        "color": "#a8bcd4"
-                    }
-                },
-                "block-2": {
-                    "type": "swatch",
-                    "settings": {
-                        "color_name": "Black",
-                        "color": "#000000"
-                    }
-                },
-                "block-3": {
-                    "type": "swatch",
-                    "settings": {
-                        "color_name": "White",
-                        "color": "#ffffff"
-                    }
-                }
-            },
-            "block_order": [
-                "block-0",
-                "block-1",
-                "block-2",
-                "block-3"
-            ]
+  "name": "Aside Group",
+  "type": "aside",
+  "sections": {
+    "swatch": {
+      "type": "swatch",
+      "blocks": {
+        "block-0": {
+          "type": "swatch",
+          "settings": {
+            "color_name": "Red",
+            "color": "#ff0000"
+          }
+        },
+        "block-1": {
+          "type": "swatch",
+          "settings": {
+            "color_name": "Blue",
+            "color": "#a8bcd4"
+          }
+        },
+        "block-2": {
+          "type": "swatch",
+          "settings": {
+            "color_name": "Black",
+            "color": "#000000"
+          }
+        },
+        "block-3": {
+          "type": "swatch",
+          "settings": {
+            "color_name": "White",
+            "color": "#ffffff"
+          }
         }
-    },
-    "order": [
-        "swatch"
-    ]
+      },
+      "block_order": [
+        "block-0",
+        "block-1",
+        "block-2",
+        "block-3"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "swatch"
+  ]
 }
